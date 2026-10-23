@@ -19,8 +19,11 @@ format:
   html:
     theme: [cosmo, styles/lecture.scss]
     toc: true
-    toc-depth: 2
-    number-sections: true
+    toc-depth: 3
+    toc-expand: true
+    # Section numbers are written in the headings (## 1.1, ### 1.1.1) to
+    # match the book's table of contents.
+    number-sections: false
     html-math-method: mathjax
     code-copy: true
     smooth-scroll: true
@@ -28,6 +31,8 @@ format:
       - text: '<a class="home-link" href="../../index.html">← Course home</a>'
   revealjs:
     theme: [default, styles/slides.scss]
+    # "## 1.1" = section slide, "### 1.1.1" = one content slide.
+    slide-level: 3
     slide-number: c/t
     hash-type: title
     width: 1280

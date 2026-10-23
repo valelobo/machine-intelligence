@@ -8,6 +8,7 @@ $presentation-heading-font: $font-family-sans-serif;
 $presentation-heading-font-weight: 700;
 $presentation-heading-letter-spacing: -0.02em;
 $presentation-h2-font-size: 1.55em;
+$presentation-h3-font-size: 1.3em;
 
 $body-bg: #ffffff;
 $body-color: #1b2333;
@@ -16,17 +17,43 @@ $presentation-heading-color: #142d50;
 $code-color: #5b3fa0;
 
 /*-- scss:rules --*/
-.reveal .slides section h2 {
-  margin-bottom: 0.15em;
+// Subsection slides ("### 1.1.1 …"): the slide title.
+.reveal .slides section.slide.level3 > h3 {
+  margin-bottom: 0.6em;
+  padding-bottom: 0.25em;
+  border-bottom: 3px solid #ebe4f7;
 }
 
-// Small subtitle line under the slide title (### in the source).
-.reveal .slides section h3 {
-  font-size: 0.75em;
-  font-weight: 500;
-  color: #5c6c82;
-  margin-top: 0;
-  margin-bottom: 0.8em;
+// Section slides ("## 1.1 …"): a divider with a short intro.
+.reveal .slides section.title-slide.level2 {
+  text-align: left;
+}
+
+.reveal .slides section.title-slide.level2 > h2 {
+  font-size: 1.9em;
+  margin-bottom: 0.7em;
+  padding-left: 0.5em;
+  border-left: 10px solid #5b3fa0;
+}
+
+.reveal .slides section.title-slide.level2 > p {
+  font-size: 0.95em;
+}
+
+.reveal .columns {
+  gap: 1.5em;
+}
+
+.reveal .callout {
+  font-size: 0.78em;
+}
+
+.reveal table {
+  font-size: 0.8em;
+}
+
+.reveal .footer {
+  font-size: 0.45em;
 }
 
 // Iframes holding animations: no border, sit flush with the slide.
@@ -35,10 +62,7 @@ $code-color: #5b3fa0;
   display: block;
 }
 
-.reveal .callout {
-  font-size: 0.8em;
-}
-
-.reveal .footer {
-  font-size: 0.45em;
+// Opt-in for denser slides: ::: {.column .smaller-text}
+.reveal .smaller-text {
+  font-size: 0.82em;
 }

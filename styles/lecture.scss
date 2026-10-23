@@ -28,13 +28,15 @@ h2 {
   border-bottom: 0;
 }
 
-// The "### subtitle" used on slides reads as a lead-in in the notes.
 h3 {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #5c6c82;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-size: 1.3rem;
+  margin-top: 2rem;
+}
+
+// Generated SVG figures: keep them a readable size in the text column.
+main.content img[src$=".svg"] {
+  max-width: 100%;
+  margin: 0.5rem auto;
 }
 
 // Speaker notes are for the slides only.

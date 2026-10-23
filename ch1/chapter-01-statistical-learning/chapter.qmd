@@ -1,0 +1,310 @@
+---
+title: "Chapter 1 — Statistical Learning"
+subtitle: "Estimating f, and judging how well we did"
+author: "Leon Lobo"
+# One source, two outputs: lecture notes (html) and slides (revealjs).
+format:
+  html:
+    output-file: lecture.html
+  revealjs:
+    output-file: slides.html
+# Structure
+# - "## 1.1 Title"    = a section: a section slide, plus a section in the notes.
+# - "### 1.1.1 Title" = a subsection: one slide, plus a subsection in the notes.
+#   Section numbers are written by hand so they match the book's table of contents.
+# Writing tips
+# - ::: {.content-visible unless-format="revealjs"} shows only in the lecture notes.
+# - ::: {.content-visible when-format="revealjs"} shows only in the slides.
+# - ::: {.notes} holds reveal.js speaker notes (press S in the slides).
+# (Keep notes here: an HTML comment in the body would become an empty slide.)
+---
+
+## 1.1 What Is Statistical Learning?
+
+We observe a response $Y$ and $p$ predictors $X = (X_1, \dots, X_p)$, and assume
+
+$$
+Y = f(X) + \varepsilon
+$$
+
+$f$ is fixed but unknown; $\varepsilon$ is random error with mean zero, independent of $X$.
+**Statistical learning is a set of approaches for estimating $f$.**
+
+::: {.content-visible unless-format="revealjs"}
+For example, a company may record the sales of a product ($Y$) in 200 markets,
+together with its advertising budgets for TV, radio and newspaper
+($X_1, X_2, X_3$). The predictors are also called *inputs*, *features* or
+*independent variables*; the response is also called the *output* or
+*dependent variable*. The function $f$ captures the systematic information
+that $X$ gives about $Y$; $\varepsilon$ is everything else.
+
+The animation below contrasts this with traditional programming: instead of
+writing the rules ourselves, we let an algorithm estimate them from examples.
+
+```{=html}
+<iframe src="animations/ml-learn-from-data.html"
+        title="Traditional programming versus learning from data"
+        width="100%" height="590" loading="lazy" allowfullscreen></iframe>
+```
+:::
+
+::: {.notes}
+Ask the class for a task where writing the rules by hand would be impossible.
+:::
+
+### 1.1.1 Why Estimate *f*?
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Prediction**: we only need good outputs
+
+$$
+\hat Y = \hat f(X)
+$$
+
+$\hat f$ can be a black box. Its accuracy depends on two errors:
+
+$$
+\mathbb E (Y - \hat Y)^2
+= \underbrace{[f(X) - \hat f(X)]^2}_{\text{reducible}}
++ \underbrace{\operatorname{Var}(\varepsilon)}_{\text{irreducible}}
+$$
+:::
+
+::: {.column width="50%"}
+**Inference**: we want to understand $f$
+
+- Which predictors are associated with $Y$?
+- What is the relationship between $Y$ and each predictor: positive, negative, how large?
+- Is a linear model adequate, or is the relationship more complicated?
+
+Here $\hat f$ cannot be a black box.
+:::
+
+::::
+
+::: {.content-visible unless-format="revealjs"}
+The reducible error can be lowered by choosing a better learning method. The
+irreducible error cannot: even a perfect estimate $\hat f = f$ still makes
+errors, because $\varepsilon$ contains unmeasured variables and genuine
+randomness. Its variance is an upper bound on how accurate any prediction can
+be, and is almost always unknown in practice.
+
+Many real problems mix both goals: a marketing team wants to predict sales
+*and* know which medium increases them most.
+:::
+
+### 1.1.2 How Do We Estimate *f*?
+
+From $n$ training observations $\{(x_1, y_1), \dots, (x_n, y_n)\}$, find $\hat f$ such that $Y \approx \hat f(X)$.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {.callout-note appearance="simple"}
+## Parametric methods
+1. Assume a form, e.g. linear:
+   $f(X) = \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p$
+2. Fit it: estimate $\beta_0, \dots, \beta_p$, e.g. by least squares.
+
+**+** only a few parameters to estimate<br>
+**−** if the assumed form is wrong, the fit is poor
+:::
+:::
+
+::: {.column width="50%"}
+::: {.callout-tip appearance="simple"}
+## Non-parametric methods
+No assumed form: fit $f$ as closely as possible to the data while keeping it smooth
+(e.g. thin-plate splines, $K$-nearest neighbours).
+
+**+** can fit a much wider range of shapes<br>
+**−** need many more observations, and can **overfit**
+:::
+:::
+
+::::
+
+::: {.content-visible unless-format="revealjs"}
+Parametric methods reduce estimating $f$ to estimating a fixed set of
+parameters. A more flexible parametric form can fit more shapes, but it needs
+more parameters and can follow the noise in the training data too closely.
+This is called *overfitting*. Non-parametric methods avoid assuming a form,
+but because they do not reduce the problem to a few parameters, they need far
+more data to estimate $f$ accurately.
+:::
+
+### 1.1.3 The Trade-Off Between Prediction Accuracy and Model Interpretability
+
+:::: {.columns}
+
+::: {.column width="58%"}
+![](figures/flexibility-interpretability.svg){fig-alt="Methods placed by flexibility and interpretability: subset selection and lasso are most interpretable and least flexible, deep learning the reverse."}
+:::
+
+::: {.column width="42%"}
+- Restrictive models (linear regression, lasso) are easy to **interpret**.
+- Flexible models (boosting, SVMs, deep learning) can fit complex $f$, but are hard to explain.
+- **Inference** favours simple models.
+- For **prediction**, the most flexible model is not always best: it can overfit.
+:::
+
+::::
+
+::: {.content-visible unless-format="revealjs"}
+Why choose a restrictive method at all? When the goal is inference, a linear
+model makes it easy to see how each predictor relates to $Y$, while a very
+flexible method can produce an estimate so complicated that no individual
+predictor's effect is visible. Counter-intuitively, even when only prediction
+matters, a less flexible method often wins on new data, because the flexible
+one is more prone to overfitting.
+:::
+
+### 1.1.4 Supervised Versus Unsupervised Learning
+
+![](figures/supervised-unsupervised.svg){fig-alt="Left: points coloured by their known class. Right: the same points in grey with dashed outlines around three discovered groups." width="72%" fig-align="center" .nostretch}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Supervised**: each $x_i$ comes with a response $y_i$. Fit a model that relates them, for prediction or inference.
+:::
+
+::: {.column width="50%"}
+**Unsupervised**: only $x_i$, no response. Look for structure, e.g. **clustering**.
+:::
+
+::::
+
+::: {.content-visible unless-format="revealjs"}
+Linear regression, logistic regression, generalised additive models, boosting
+and support vector machines are all supervised. In the unsupervised setting
+we are, in a sense, working blind: there is no response to supervise the
+analysis. Cluster analysis asks whether the observations fall into distinct
+groups, for example market segments of customers.
+
+Some problems sit in between. When only $m < n$ observations have a response
+(because measuring it is expensive), we have a *semi-supervised* problem.
+:::
+
+### 1.1.5 Regression Versus Classification Problems
+
+| Response is… | Examples | Problem |
+|---|---|---|
+| **Quantitative**: numerical | age, income, house price, stock price | **Regression** |
+| **Qualitative**: one of $K$ classes | brand, disease yes/no, cancer type | **Classification** |
+
+- The distinction is about the **response**; predictors can be of either type.
+- Some methods handle both, e.g. $K$-nearest neighbours and boosting.
+- Logistic regression is a classifier, but it estimates class **probabilities**, so it behaves like a regression method too.
+
+## 1.2 Assessing Model Accuracy
+
+**There is no free lunch in statistics**: no one method is best on every data set.
+
+So for each data set we must decide which method gives the best results, and
+that requires a way to **measure** how good a fit is.
+
+### 1.2.1 Measuring the Quality of Fit
+
+:::: {.columns}
+
+::: {.column width="48%"}
+Mean squared error on the training data:
+
+$$
+\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} \big(y_i - \hat f(x_i)\big)^2
+$$
+
+What we really care about is the **test MSE** on unseen data:
+
+$$
+\operatorname{Ave}\big(y_0 - \hat f(x_0)\big)^2
+$$
+
+A small training MSE does not guarantee a small test MSE.
+:::
+
+::: {.column width="52%"}
+![](figures/train-test-mse.svg){fig-alt="As flexibility grows, training MSE keeps falling below Var(epsilon) while test MSE falls, then rises in a U shape."}
+:::
+
+::::
+
+::: {.content-visible unless-format="revealjs"}
+As flexibility increases, the training MSE keeps decreasing, but the test MSE
+first falls and then rises. When a method has a small training MSE but a large
+test MSE, it is *overfitting*: it has picked up patterns caused by random
+chance rather than by the true $f$. The test MSE can never drop below
+$\operatorname{Var}(\varepsilon)$, the dashed line. When no test set is
+available, cross-validation (a later chapter) estimates the test MSE from the
+training data.
+:::
+
+### 1.2.2 The Bias-Variance Trade-Off
+
+```{=html}
+<iframe src="animations/bias-variance.html"
+        title="The bias-variance trade-off"
+        width="100%" height="590" loading="lazy" allowfullscreen></iframe>
+```
+
+::: {.content-visible unless-format="revealjs"}
+The expected test MSE at a point $x_0$ decomposes into three non-negative
+terms:
+
+$$
+\mathbb E\big(y_0 - \hat f(x_0)\big)^2
+= \operatorname{Var}\big(\hat f(x_0)\big)
++ \big[\operatorname{Bias}\big(\hat f(x_0)\big)\big]^2
++ \operatorname{Var}(\varepsilon).
+$$
+
+*Variance* is how much $\hat f$ would change if we estimated it from a
+different training set. *Bias* is the error introduced by approximating a
+real-life problem, which may be very complicated, with a much simpler model.
+As a rule, more flexible methods have higher variance and lower bias. Which
+effect dominates determines whether the test MSE rises or falls, and the goal
+is the level of flexibility at which their sum is smallest.
+:::
+
+### 1.2.3 The Classification Setting
+
+:::: {.columns}
+
+::: {.column width="56%" .smaller-text}
+Training **error rate**: $\displaystyle \frac{1}{n} \sum_{i=1}^{n} I(y_i \neq \hat y_i)$
+
+**Bayes classifier**: assign $x_0$ to the class $j$ with the largest
+$\Pr(Y = j \mid X = x_0)$. It has the lowest possible test error (the Bayes error rate).
+
+**$K$-nearest neighbours** estimates that probability from the $K$ closest training points $\mathcal N_0$:
+
+$$
+\Pr(Y = j \mid X = x_0) \approx \frac{1}{K} \sum_{i \in \mathcal N_0} I(y_i = j)
+$$
+
+Small $K$: flexible, low bias, high variance. Large $K$: smoother boundary.
+:::
+
+::: {.column width="44%"}
+![](figures/bayes-classifier.svg){fig-alt="Two classes of points with the dashed Bayes decision boundary separating the shaded regions."}
+:::
+
+::::
+
+::: {.content-visible unless-format="revealjs"}
+For classification, the indicator $I(y_i \neq \hat y_i)$ is 1 for a mistake
+and 0 otherwise, so the error rate is the fraction of misclassifications. As
+with the MSE, what matters is the *test* error rate,
+$\operatorname{Ave}\big(I(y_0 \neq \hat y_0)\big)$.
+
+The Bayes classifier is an ideal: in real data we do not know the conditional
+distribution of $Y$ given $X$, so it cannot be computed. Its error rate,
+$1 - \mathbb E\big(\max_j \Pr(Y = j \mid X)\big)$, plays the role of the
+irreducible error. Methods such as KNN try to approximate it. With $K = 1$ the
+decision boundary is very flexible and the training error is zero, but the
+test error can be high; as $K$ grows the boundary becomes close to linear. The
+bias-variance trade-off appears again.
+:::
