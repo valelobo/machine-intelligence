@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Machine learning course materials: lecture notes, slides and interactive examples.">
+  <title>Machine Learning · Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+  <style>
+    :root {
+      --paper: #f6f7fb; --card: #ffffff; --ink: #1b2333; --muted: #5c6577;
+      --line: #dde2ea; --brand: #142d50; --accent: #5b3fa0; --accent-soft: #ebe4f7;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.65 "Inter", system-ui, sans-serif; }
+    a { color: inherit; }
+    .wrap { width: min(1080px, calc(100% - 32px)); margin: auto; }
+    header { border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 76px; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; text-decoration: none; letter-spacing: -0.02em; }
+    .mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 9px; background: var(--brand); color: #b9a6ec; font-size: 13px; }
+    nav { display: flex; gap: 24px; font-size: 14px; }
+    nav a { text-decoration: none; color: var(--muted); }
+    nav a:hover { color: var(--ink); }
+    .hero { padding: 72px 0 56px; max-width: 720px; }
+    .eyebrow { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--accent); }
+    h1 { font-family: "Source Serif 4", Georgia, serif; font-weight: 400; font-size: clamp(40px, 6vw, 68px); line-height: 1.05; letter-spacing: -0.03em; margin: 18px 0; }
+    h1 em { color: var(--accent); }
+    .lead { color: var(--muted); font-size: 18px; max-width: 560px; }
+    h2 { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
+    .chapters { display: grid; gap: 14px; margin-bottom: 64px; }
+    .chapter { display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 24px; }
+    .num { font-family: "Source Serif 4", Georgia, serif; font-size: 30px; color: var(--accent); }
+    .chapter h3 { margin: 0; font-size: 18px; letter-spacing: -0.01em; }
+    .chapter p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+    .links { display: flex; gap: 8px; }
+    .btn { display: inline-flex; align-items: center; height: 38px; padding: 0 16px; border-radius: 8px; border: 1px solid var(--line); font-size: 14px; font-weight: 600; text-decoration: none; }
+    .btn:hover { background: #f1f2f6; }
+    .btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+    .btn.primary:hover { background: #214779; }
+    .chapter.soon { opacity: 0.6; }
+    .tag { font-size: 12px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 4px 10px; border-radius: 20px; }
+    a:focus-visible { outline: 3px solid #8f78cf; outline-offset: 3px; }
+    footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+    @media (max-width: 640px) {
+      nav { display: none; }
+      .hero { padding: 44px 0 36px; }
+      .chapter { grid-template-columns: 40px 1fr; padding: 16px; }
+      .links { grid-column: 1 / -1; }
+      .links .btn { flex: 1; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="./"><span class="mark">ML</span> Machine Learning</a>
+      <nav>
+        <a href="#chapters">Chapters</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Course · Semester 1</div>
+      <h1>Learning <em>from data</em>, one idea at a time.</h1>
+      <p class="lead">Lecture notes, slides and interactive animations for an introductory machine learning course.</p>
+    </section>
+
+    <section id="chapters">
+      <h2>Chapters</h2>
+      <div class="chapters">
+        <!-- Copy one of these blocks for each new chapter. -->
+        <article class="chapter">
+          <div class="num">01</div>
+          <div>
+            <h3>Introduction to Machine Learning</h3>
+            <p>Rules versus learning, training and testing, data splits.</p>
+          </div>
+          <div class="links">
+            <a class="btn" href="ch1/chapter-01-introduction/lecture.html">Notes</a>
+            <a class="btn primary" href="ch1/chapter-01-introduction/slides.html">Slides</a>
+          </div>
+        </article>
+
+        <article class="chapter soon">
+          <div class="num">02</div>
+          <div>
+            <h3>Regression</h3>
+            <p>Linear models, least squares, regularisation.</p>
+          </div>
+          <div class="links"><span class="tag">Coming soon</span></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer id="about">
+    <div class="wrap">Course materials by Your Name. Built with Quarto and hosted on GitHub Pages.</div>
+  </footer>
+</body>
+</html>

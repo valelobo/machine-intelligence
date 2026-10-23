@@ -1,0 +1,309 @@
+/* Step-by-step animation player. See _templates/animation.html for usage. */
+:root {
+  --st-bg: #ffffff;
+  --st-page: #eef1f6;
+  --st-bar: #f8f9fb;
+  --st-line: #dde2ea;
+  --st-ink: #1b2333;
+  --st-muted: #5c6577;
+  --st-accent: #5b3fa0;
+  --st-accent-hover: #4a3285;
+  --st-track: #e6e2f0;
+
+  /* Diagram palette, used by the .box / .pill / .arrow helpers below. */
+  --d-ink: #1b2333;
+  --d-muted: #5c6577;
+  --d-stroke: #6b7487;
+  --d-neutral-fill: #eef0f4;
+  --d-teal-fill: #dff1ee;
+  --d-teal-stroke: #2a8c7d;
+  --d-teal-ink: #17594f;
+  --d-blue-fill: #dde8f7;
+  --d-blue-stroke: #3d68a8;
+  --d-blue-ink: #1f467f;
+  --d-purple-fill: #ebe4f7;
+  --d-purple-stroke: #6c4fb0;
+  --d-purple-ink: #4b2f8a;
+  --d-amber-fill: #fbefd9;
+  --d-amber-stroke: #b9822c;
+  --d-amber-ink: #7a5212;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+  color: var(--st-ink);
+  font: 16px/1.5 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body { padding: 8px; }
+
+.stepper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--st-bg);
+  border: 1px solid var(--st-line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.stepper:fullscreen { border-radius: 0; border: 0; }
+
+.st-main {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 26%);
+}
+
+.st-stage {
+  position: relative;
+  min-height: 0;
+}
+
+/* Fill the stage; the viewBox keeps the drawing's aspect ratio, centred. */
+.st-stage svg {
+  position: absolute;
+  inset: 16px 20px;
+  width: calc(100% - 40px);
+  height: calc(100% - 32px);
+}
+
+.st-caption {
+  border-left: 1px solid var(--st-line);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.st-caption h3 {
+  margin: 0 0 8px;
+  font-size: 1.55rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.st-caption p {
+  margin: 0;
+  color: var(--st-muted);
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+.st-caption.is-changing { animation: st-fade-in 0.35s ease both; }
+
+@keyframes st-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---- control bar ---- */
+.st-bar {
+  background: var(--st-bar);
+  border-top: 1px solid var(--st-line);
+  padding: 20px 22px 14px;
+}
+
+.st-progress {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.st-progress button {
+  flex: 1;
+  height: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: var(--st-track);
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.st-progress button.is-done { background: var(--st-accent); }
+.st-progress button:hover { background: var(--st-accent-hover); }
+
+.st-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.st-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--st-line);
+  border-radius: 10px;
+  background: var(--st-bg);
+  color: var(--st-ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.st-btn:hover:not(:disabled) { border-color: #b9c0cc; background: #f3f4f7; }
+.st-btn:disabled { color: #a3a9b5; cursor: default; background: #f6f7f9; }
+.st-btn svg { width: 18px; height: 18px; flex: none; }
+.st-btn.icon-only { padding: 0; width: 44px; justify-content: center; }
+
+.st-btn.primary {
+  background: var(--st-accent);
+  border-color: var(--st-accent);
+  color: #fff;
+  min-width: 130px;
+  justify-content: center;
+}
+
+.st-btn.primary:hover { background: var(--st-accent-hover); border-color: var(--st-accent-hover); }
+
+.st-btn:focus-visible,
+.st-progress button:focus-visible,
+.st-toggle input:focus-visible + .st-switch {
+  outline: 3px solid #8f78cf;
+  outline-offset: 2px;
+}
+
+.st-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.st-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+
+.st-switch {
+  width: 50px;
+  height: 28px;
+  border-radius: 14px;
+  background: #c4c9d2;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.st-switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.25);
+  transition: transform 0.2s;
+}
+
+.st-toggle input:checked + .st-switch { background: var(--st-accent); }
+.st-toggle input:checked + .st-switch::after { transform: translateX(22px); }
+
+.st-count { margin-left: auto; font-weight: 600; }
+
+.st-hint {
+  margin-top: 12px;
+  color: var(--st-muted);
+  font-size: 0.88rem;
+}
+
+.st-hint kbd {
+  display: inline-block;
+  min-width: 26px;
+  padding: 1px 7px;
+  border: 1px solid var(--st-line);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: #fff;
+  color: var(--st-ink);
+  font: 600 0.8rem/1.6 inherit;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .st-main { grid-template-columns: minmax(0, 1fr) minmax(200px, 28%); }
+  .st-caption { padding: 18px 20px; }
+  .st-caption h3 { font-size: 1.25rem; }
+  .st-caption p { font-size: 1rem; }
+  .st-btn { padding: 0 13px; }
+  .st-btn.primary { min-width: 110px; }
+  .st-toggle { margin-left: 6px; }
+  .st-hint { font-size: 0.8rem; }
+}
+
+/* Narrow (e.g. lecture-notes column, phones): caption goes under the diagram. */
+@media (max-width: 860px) {
+  .st-main { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; }
+  .st-caption { border-left: 0; border-top: 1px solid var(--st-line); padding: 14px 20px; }
+  .st-caption h3 { font-size: 1.15rem; margin-bottom: 2px; }
+  .st-btn.restart { padding: 0; width: 44px; justify-content: center; }
+  .st-btn.restart .st-label { display: none; }
+  .st-bar { padding: 14px 16px 12px; }
+}
+
+@media (max-width: 560px) {
+  .st-btn .st-label { display: none; }
+  .st-btn { padding: 0 12px; }
+  .st-btn.primary { min-width: 0; }
+  .st-toggle { margin-left: 4px; }
+  .st-hint { display: none; }
+}
+
+/* ---- diagram helpers (use inside the SVG) ---- */
+[data-step] {
+  opacity: 0;
+  transform: translateY(8px);
+  transform-box: fill-box;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+[data-step].is-on { opacity: 1; transform: none; }
+
+/* Lines/paths with .draw are "drawn" in when they appear. */
+.draw { transition: stroke-dashoffset 0.6s ease 0.1s, opacity 0.3s ease; }
+
+.box { fill: var(--d-neutral-fill); stroke: var(--d-stroke); stroke-width: 1.5; }
+.box.teal { fill: var(--d-teal-fill); stroke: var(--d-teal-stroke); }
+.box.blue { fill: var(--d-blue-fill); stroke: var(--d-blue-stroke); }
+.box.purple { fill: var(--d-purple-fill); stroke: var(--d-purple-stroke); }
+.box.amber { fill: var(--d-amber-fill); stroke: var(--d-amber-stroke); }
+
+.label { fill: var(--d-ink); font: 600 17px "Inter", system-ui, sans-serif; text-anchor: middle; dominant-baseline: central; }
+.label.big { font-size: 20px; }
+.label.teal { fill: var(--d-teal-ink); }
+.label.blue { fill: var(--d-blue-ink); }
+.label.purple { fill: var(--d-purple-ink); }
+.label.amber { fill: var(--d-amber-ink); }
+.note { fill: var(--d-muted); font: 500 14px "Inter", system-ui, sans-serif; text-anchor: middle; }
+.note.left { text-anchor: start; }
+.heading { font: 600 15px "Inter", system-ui, sans-serif; fill: var(--d-muted); }
+.heading.blue { fill: var(--d-blue-ink); }
+
+.arrow { fill: none; stroke: var(--d-stroke); stroke-width: 2; marker-end: url(#st-arrow); }
+.group { fill: none; stroke: var(--d-stroke); stroke-width: 1.3; stroke-dasharray: 6 5; }
+.group.blue { stroke: var(--d-blue-stroke); }
+
+/* Pulse to draw the eye to whatever the current step introduced. */
+.is-current .box, .box.is-current { animation: st-pulse 1.2s ease 0.3s 1; }
+
+@keyframes st-pulse {
+  0%, 100% { stroke-width: 1.5; }
+  40% { stroke-width: 4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-step], .draw, .st-caption.is-changing, .st-switch, .st-switch::after { transition: none; animation: none; }
+  .is-current .box, .box.is-current { animation: none; }
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<!--
+  Animation template. Copy into chX/<chapter>/animations/<name>.html, then:
+  1. Draw the diagram in the <svg>. Wrap each piece in <g data-step="n"> so
+     it appears at step n (add data-until="m" to hide it after step m).
+     Avoid putting data-step on an element that has its own transform=""
+     attribute; wrap it in a <g> instead.
+  2. Add one <li> caption per step, in order.
+  3. Embed it in the chapter .qmd:
+       ```{=html}
+       <iframe src="animations/<name>.html" title="…" width="100%"
+               height="590" loading="lazy" allowfullscreen></iframe>
+       ```
+  Helper classes: .box (.teal .blue .purple .amber), .label (.big + colours),
+  .note, .heading, .arrow (arrowhead added automatically), .group (dashed
+  frame), .draw (line is drawn in when it appears).
+  data-interval on .stepper sets the autoplay delay in ms;
+  data-autoplay="false" starts paused.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Animation title</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../../../assets/stepper/stepper.css">
+</head>
+<body>
+  <div class="stepper" data-interval="2600">
+    <div class="st-stage">
+      <svg viewBox="0 0 1000 400" role="img" aria-label="Describe the diagram">
+        <g data-step="1">
+          <rect class="box teal" x="80" y="180" width="160" height="44" rx="8"/>
+          <text class="label teal" x="160" y="202">input</text>
+        </g>
+        <g data-step="2">
+          <path class="arrow draw" d="M240 202 L398 202"/>
+          <rect class="box" x="400" y="150" width="200" height="104" rx="10"/>
+          <text class="label big" x="500" y="202">model</text>
+        </g>
+        <g data-step="3">
+          <path class="arrow draw" d="M600 202 L758 202"/>
+          <rect class="box blue" x="760" y="180" width="160" height="44" rx="4"/>
+          <text class="label blue" x="840" y="202">prediction</text>
+        </g>
+      </svg>
+    </div>
+
+    <ol class="st-steps">
+      <li><h3>Step one</h3><p>What appears first and why it matters.</p></li>
+      <li><h3>Step two</h3><p>What gets added next.</p></li>
+      <li><h3>Step three</h3><p>The conclusion.</p></li>
+    </ol>
+  </div>
+  <script src="../../../assets/stepper/stepper.js"></script>
+</body>
+</html>

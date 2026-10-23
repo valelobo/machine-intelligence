@@ -1,0 +1,100 @@
+# Machine Learning course materials
+
+Lecture notes, slides and interactive step-by-step animations, built with
+[Quarto](https://quarto.org) and published to GitHub Pages.
+
+Each chapter is **one** `.qmd` file that renders twice:
+
+| Output          | Format         | Used for                     |
+|-----------------|----------------|------------------------------|
+| `lecture.html`  | Quarto HTML    | reading notes, with a TOC    |
+| `slides.html`   | reveal.js      | presenting in class          |
+
+Animations are standalone HTML files (SVG + a small player script), embedded
+in both outputs with an `<iframe>`.
+
+## Layout
+
+```
+_quarto.yml                  shared settings for every chapter
+index.html                   course landing page (plain HTML)
+styles/lecture.scss          theme for the notes
+styles/slides.scss           theme for the slides
+assets/stepper/              the animation player (stepper.js + stepper.css)
+_templates/animation.html    starting point for a new animation
+ch1/chapter-01-introduction/
+  chapter.qmd                the chapter source
+  animations/*.html          animations for this chapter
+  figures/                   (optional) images
+.github/workflows/publish.yml  builds and deploys on every push to main
+```
+
+## Work locally
+
+1. Install Quarto: <https://quarto.org/docs/get-started/>
+2. Live preview while writing:
+   ```bash
+   quarto preview ch1/chapter-01-introduction/chapter.qmd
+   ```
+   This opens the notes; open `slides.html` from the same folder for the deck.
+3. Full build into `_site/`:
+   ```bash
+   quarto render
+   ```
+
+## Add a chapter
+
+1. Copy `ch1/chapter-01-introduction/` to e.g. `ch2/chapter-02-regression/`.
+2. Edit the title in `chapter.qmd` and replace the content.
+3. Add a card for it in `index.html` (copy the existing `<article class="chapter">`).
+
+Writing tips:
+
+- Each `##` heading is one slide, and one section in the notes. A `###` right
+  under it shows as a small subtitle on the slide.
+- `::: {.content-visible unless-format="revealjs"}` shows content only in the
+  notes; `::: {.content-visible when-format="revealjs"}` only in the slides.
+  Note: `when-format="html"` matches the slides too, since reveal.js is HTML.
+- `::: {.notes}` holds speaker notes (press <kbd>S</kbd> during the slides).
+- `::: {.incremental}` reveals a list item by item on slides.
+- In the slides: <kbd>M</kbd> menu, <kbd>C</kbd> chalkboard, <kbd>F</kbd> full
+  screen, <kbd>E</kbd> print view (then save as PDF from the browser).
+
+## Add an animation
+
+1. Copy `_templates/animation.html` to `chX/<chapter>/animations/<name>.html`.
+2. Draw the diagram in the SVG. Wrap each piece in `<g data-step="n">` so it
+   appears at step `n`. Add `data-until="m"` to hide it after step `m`.
+3. Write one `<li>` caption per step.
+4. Embed it in the chapter:
+   ````markdown
+   ```{=html}
+   <iframe src="animations/<name>.html" title="Short description"
+           width="100%" height="590" loading="lazy" allowfullscreen></iframe>
+   ```
+   ````
+
+The player adds the progress bar, the Restart, Previous, Play/Pause/Replay and
+Next buttons, full screen, the step-by-step toggle and the keyboard shortcuts.
+It starts playing when it scrolls into view (or its slide is shown) and pauses
+when it leaves. The SVG helper classes (`.box`, `.label`, `.arrow`, `.group`,
+`.draw` and colour modifiers) are documented at the top of the template.
+
+During a slide show, clicking inside an animation gives it the keyboard, so
+the arrow keys step the animation instead of the deck. Click outside it to
+hand the keys back to the slides.
+
+## Publish on GitHub Pages
+
+1. Create a repository on GitHub and push this folder to its `main` branch.
+2. In the repository, open **Settings → Pages** and set **Source** to
+   **GitHub Actions**.
+3. Every push to `main` now builds the site and publishes it at
+   `https://<user>.github.io/<repo>/`. Progress shows in the **Actions** tab.
+
+All links are relative, so the site works under the `/<repo>/` sub-path
+without changes. For a custom domain (like `ml.example.com`), add it under
+Settings → Pages and add a DNS `CNAME` record pointing to `<user>.github.io`.
+
+If chapters ever run Python code cells, uncomment the Python steps in
+`.github/workflows/publish.yml` and list the packages there.

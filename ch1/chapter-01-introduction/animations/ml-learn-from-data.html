@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Traditional programming versus learning</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../../../assets/stepper/stepper.css">
+</head>
+<body>
+  <div class="stepper" data-interval="3000">
+    <div class="st-stage">
+      <svg viewBox="0 0 1000 430" role="img" aria-label="Traditional programming compared with machine-learning training and testing">
+
+        <!-- Step 1: traditional programming -->
+        <g data-step="1">
+          <text class="heading" x="20" y="26">Traditional programming: a person writes the rules</text>
+          <rect class="box teal" x="35" y="46" width="160" height="40" rx="8"/>
+          <text class="label teal" x="115" y="66">data</text>
+          <rect class="box amber" x="35" y="106" width="160" height="40" rx="20"/>
+          <text class="label amber" x="115" y="126">rules</text>
+          <path class="arrow draw" d="M195 66 L253 86"/>
+          <path class="arrow draw" d="M195 126 L253 106"/>
+          <rect class="box" x="255" y="56" width="170" height="80" rx="10"/>
+          <text class="label big" x="340" y="96">program</text>
+          <path class="arrow draw" d="M425 96 L478 96"/>
+          <rect class="box blue" x="480" y="76" width="130" height="40" rx="4"/>
+          <text class="label blue" x="545" y="96">output</text>
+        </g>
+
+        <!-- Step 2: where hand-written rules break down -->
+        <g data-step="2">
+          <rect class="box amber" x="660" y="50" width="320" height="92" rx="10"/>
+          <text class="note left" x="678" y="80">Which rules spot a crack in a photo</text>
+          <text class="note left" x="678" y="102">of a wall? Or tell a cat from a dog?</text>
+          <text class="note left" x="678" y="124">Too many cases to write by hand.</text>
+        </g>
+
+        <!-- Step 3: training inputs -->
+        <g data-step="3">
+          <rect class="group" x="15" y="200" width="455" height="200" rx="12"/>
+          <text class="heading" x="25" y="190">Training: learns the rules from examples</text>
+          <rect class="box teal" x="35" y="255" width="160" height="40" rx="8"/>
+          <text class="label teal" x="115" y="275">training data</text>
+          <rect class="box blue" x="35" y="325" width="160" height="40" rx="4"/>
+          <text class="label blue" x="115" y="345">desired output</text>
+          <path class="arrow draw" d="M195 275 L253 295"/>
+          <path class="arrow draw" d="M195 345 L253 325"/>
+          <rect class="box" x="255" y="250" width="170" height="120" rx="10"/>
+          <text class="label big" x="340" y="310">ML training</text>
+        </g>
+
+        <!-- Step 4: learned rules = model weights -->
+        <g data-step="4">
+          <path class="arrow draw" d="M425 310 L508 322"/>
+          <rect class="box purple" x="510" y="300" width="140" height="44" rx="22"/>
+          <text class="label purple" x="580" y="322">rules</text>
+          <text class="label" x="580" y="366" style="font-size:15px">ML model</text>
+          <text class="note" x="580" y="386">weights <tspan font-weight="700">w</tspan></text>
+        </g>
+
+        <!-- Step 5: testing -->
+        <g data-step="5">
+          <rect class="group blue" x="490" y="200" width="495" height="200" rx="12"/>
+          <text class="heading blue" x="500" y="190">Testing: applies the learned rules</text>
+          <rect class="box teal" x="510" y="225" width="140" height="40" rx="8"/>
+          <text class="label teal" x="580" y="245">test data</text>
+          <path class="arrow draw" d="M650 245 L698 285"/>
+          <path class="arrow draw" d="M650 322 L698 315"/>
+          <rect class="box" x="700" y="250" width="135" height="120" rx="10"/>
+          <text class="label big" x="767" y="310">ML testing</text>
+        </g>
+
+        <!-- Step 6: output -->
+        <g data-step="6">
+          <path class="arrow draw" d="M835 310 L873 310"/>
+          <rect class="box blue" x="875" y="290" width="100" height="40" rx="4"/>
+          <text class="label blue" x="925" y="310">output</text>
+        </g>
+      </svg>
+    </div>
+
+    <ol class="st-steps">
+      <li>
+        <h3>Traditional programming</h3>
+        <p>A programmer writes the rules. The computer applies them to data and returns an output.</p>
+      </li>
+      <li>
+        <h3>Where it breaks down</h3>
+        <p>For images, sound or text, nobody can write the rules down explicitly.</p>
+      </li>
+      <li>
+        <h3>Learn from examples</h3>
+        <p>Machine learning turns it around: we supply data <em>and</em> the outputs we want.</p>
+      </li>
+      <li>
+        <h3>The rules are learned</h3>
+        <p>Training finds weights <strong>w</strong> that map inputs to outputs. Those weights are the model.</p>
+      </li>
+      <li>
+        <h3>Apply to new data</h3>
+        <p>Unseen test data goes in together with the learned rules.</p>
+      </li>
+      <li>
+        <h3>The full picture</h3>
+        <p>Once trained, the model works like an ordinary program: data + learned rules give the output.</p>
+      </li>
+    </ol>
+  </div>
+  <script src="../../../assets/stepper/stepper.js"></script>
+</body>
+</html>

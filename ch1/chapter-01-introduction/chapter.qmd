@@ -1,0 +1,102 @@
+---
+title: "Chapter 1 — Introduction to Machine Learning"
+subtitle: "What it means for a computer to learn from data"
+author: "Your Name"
+# One source, two outputs: lecture notes (html) and slides (revealjs).
+format:
+  html:
+    output-file: lecture.html
+  revealjs:
+    output-file: slides.html
+---
+
+<!--
+Writing tips
+- Every "##" heading becomes one slide, and one section in the notes.
+- "###" right under it is a small subtitle line on the slide.
+- ::: {.content-visible unless-format="revealjs"} ... ::: shows only in the lecture notes.
+- ::: {.content-visible when-format="revealjs"} ... ::: shows only in the slides.
+- ::: {.notes} ... ::: is reveal.js speaker notes (press S in the slides).
+-->
+
+## Traditional programming versus learning
+
+### Rules versus learning
+
+```{=html}
+<iframe src="animations/ml-learn-from-data.html"
+        title="Traditional programming versus learning from data"
+        width="100%" height="590" loading="lazy" allowfullscreen></iframe>
+```
+
+::: {.content-visible unless-format="revealjs"}
+In traditional programming, a person encodes the rules and the computer applies
+them. Machine learning reverses the roles. We provide examples of inputs
+together with the outputs we expect, and an algorithm searches for the rules,
+encoded as the parameters $\mathbf w$ of a model. Once trained, the model is
+used exactly like a program: new data in, prediction out.
+:::
+
+::: {.notes}
+Ask the class for a task where writing the rules by hand would be impossible.
+:::
+
+## Training, testing, validation
+
+### Training: estimate model parameters
+
+Given supervised examples
+
+$$
+\mathcal D=\{(\mathbf x_i,y_i)\}_{i=1}^{n},
+$$
+
+training chooses the parameters that minimise the average loss:
+
+$$
+\hat{\mathbf w} = \arg\min_{\mathbf w} \; \frac{1}{n}\sum_{i=1}^{n} \ell\big(f_{\mathbf w}(\mathbf x_i),\, y_i\big).
+$$
+
+::: {.content-visible unless-format="revealjs"}
+The loss $\ell$ measures how far a prediction is from the target. Chapter 3
+covers the common choices. Splitting the data into training, validation and
+test sets lets us check that the model generalises to examples it has never
+seen.
+:::
+
+## Data splits
+
+:::: {.columns}
+
+::: {.column width="55%"}
+::: {.incremental}
+- **Training set**: fit the weights $\mathbf w$
+- **Validation set**: choose hyperparameters
+- **Test set**: report final performance, used once
+:::
+:::
+
+::: {.column width="45%"}
+::: {.callout-tip}
+## Rule of thumb
+Never tune anything on the test set, or the reported error will be too optimistic.
+:::
+:::
+
+::::
+
+## A first model in code
+
+```{.python code-line-numbers="|4|5-6"}
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+model = LogisticRegression().fit(X_train, y_train)   # learn w
+print(model.score(X_test, y_test))                    # apply w to new data
+```
+
+::: {.content-visible unless-format="revealjs"}
+The code mirrors the animation above: `fit` is the training stage that learns
+the rules, and `score` applies them to unseen test data.
+:::

@@ -1,0 +1,44 @@
+project:
+  type: default
+  output-dir: _site
+  # Only render chapter sources; README.md etc. stay out of the site.
+  render:
+    - "ch*/**/*.qmd"
+  # Copied verbatim into _site.
+  resources:
+    - index.html
+    - .nojekyll
+    - assets/
+    - "ch*/**/animations/"
+    - "ch*/**/figures/"
+    - "ch*/**/files/"
+
+# Shared settings for every chapter. Each chapter's front matter only sets
+# its title and the two output file names.
+format:
+  html:
+    theme: [cosmo, styles/lecture.scss]
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    html-math-method: mathjax
+    code-copy: true
+    smooth-scroll: true
+    include-before-body:
+      - text: '<a class="home-link" href="../../index.html">← Course home</a>'
+  revealjs:
+    theme: [default, styles/slides.scss]
+    slide-number: c/t
+    hash-type: title
+    width: 1280
+    height: 760
+    margin: 0.06
+    menu: true
+    controls-layout: bottom-right
+    transition: fade
+    transition-speed: fast
+    preview-links: auto
+    chalkboard: true
+    html-math-method: mathjax
+    # Keep each chapter's links back to the course home.
+    footer: "[← Course home](../../index.html)"
