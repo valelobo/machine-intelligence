@@ -1,7 +1,7 @@
 ---
 title: "Chapter 1 — Introduction to Machine Learning"
 subtitle: "What it means for a computer to learn from data"
-author: "Your Name"
+author: "Leon Lobo"
 # One source, two outputs: lecture notes (html) and slides (revealjs).
 format:
   html:
