@@ -45,5 +45,3 @@ format:
     preview-links: auto
     chalkboard: true
     html-math-method: mathjax
-    # Keep each chapter's links back to the course home.
-    footer: "[← Course home](../../index.html)"

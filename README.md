@@ -1,4 +1,4 @@
-# Machine Learning course materials
+# Machine Intelligence (MI) course materials
 
 Lecture notes, slides and interactive step-by-step animations, built with
 [Quarto](https://quarto.org) and published to GitHub Pages.
