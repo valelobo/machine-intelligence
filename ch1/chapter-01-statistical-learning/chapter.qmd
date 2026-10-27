@@ -38,12 +38,12 @@ together with its advertising budgets for TV, radio and newspaper
 *dependent variable*. The function $f$ captures the systematic information
 that $X$ gives about $Y$; $\varepsilon$ is everything else.
 
-The animation below contrasts this with traditional programming: instead of
+The animation below contrasts this with computational thinking: instead of
 writing the rules ourselves, we let an algorithm estimate them from examples.
 
 ```{=html}
 <iframe src="animations/ml-learn-from-data.html"
-        title="Traditional programming versus learning from data"
+        title="Computational thinking versus learning from data"
         width="100%" height="590" loading="lazy" allowfullscreen></iframe>
 ```
 :::
