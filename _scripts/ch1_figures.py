@@ -71,24 +71,24 @@ class Axes:
             f'font-weight="600" fill="{MUTED}">{xlabel}</text>\n'
             f'<text transform="translate({l - 22} {t + h / 2}) rotate(-90)" text-anchor="middle" '
             f'font-size="15" font-weight="600" fill="{MUTED}">{ylabel}</text>\n'
-            f'<text x="{l}" y="{t + h + 18}" font-size="13" fill="{MUTED}">Low</text>\n'
-            f'<text x="{l + w}" y="{t + h + 18}" text-anchor="end" font-size="13" fill="{MUTED}">High</text>\n'
+            f'<text x="{l}" y="{t + h + 18}" font-size="13" fill="{MUTED}">Baixa</text>\n'
+            f'<text x="{l + w}" y="{t + h + 18}" text-anchor="end" font-size="13" fill="{MUTED}">Alta</text>\n'
         )
 
 
 def flexibility_interpretability():
     ax = Axes(70, 30, 500, 300)
     methods = [
-        ("Subset selection", 0.08, 0.93, "start"),
+        ("Seleção de subconjuntos", 0.08, 0.93, "start"),
         ("Lasso", 0.10, 0.82, "start"),
-        ("Least squares", 0.28, 0.70, "start"),
-        ("Generalised additive models", 0.47, 0.50, "start"),
-        ("Trees", 0.47, 0.40, "start"),
+        ("Mínimos quadrados", 0.28, 0.70, "start"),
+        ("Modelos aditivos generalizados", 0.47, 0.50, "start"),
+        ("Árvores", 0.47, 0.40, "start"),
         ("Bagging, boosting", 0.72, 0.24, "end"),
-        ("Support vector machines", 0.76, 0.14, "end"),
-        ("Deep learning", 0.93, 0.05, "end"),
+        ("Máquinas de vetores de suporte", 0.76, 0.14, "end"),
+        ("Aprendizado profundo", 0.93, 0.05, "end"),
     ]
-    body = ax.frame("Flexibility", "Interpretability")
+    body = ax.frame("Flexibilidade", "Interpretabilidade")
     for name, x, y, anchor in methods:
         px, py = ax.px(x, y)
         dx = 12 if anchor == "start" else -12
@@ -103,8 +103,8 @@ def supervised_unsupervised():
     centres = [(0.28, 0.70, TEAL), (0.70, 0.72, BLUE), (0.50, 0.27, PURPLE)]
     pts = [(rng.gauss(cx, 0.08), rng.gauss(cy, 0.08), c) for cx, cy, c in centres for _ in range(22)]
     body = ""
-    for i, (title, coloured) in enumerate([("Supervised: every xᵢ has a label yᵢ", True),
-                                           ("Unsupervised: only xᵢ, find the groups", False)]):
+    for i, (title, coloured) in enumerate([("Supervisionado: cada xᵢ tem um rótulo yᵢ", True),
+                                           ("Não supervisionado: só xᵢ, achar grupos", False)]):
         ax = Axes(30 + i * 420, 50, 350, 270)
         l, t, w, h = ax.l, ax.t, ax.w, ax.h
         body += (f'<rect x="{l}" y="{t}" width="{w}" height="{h}" rx="10" fill="none" stroke="{GRID}" stroke-width="1.5"/>\n'
@@ -123,7 +123,7 @@ def supervised_unsupervised():
 
 def train_test_mse():
     ax = Axes(70, 30, 500, 290, ylim=(0, 1.35))
-    body = ax.frame("Flexibility", "Mean squared error")
+    body = ax.frame("Flexibilidade", "Erro quadrático médio")
     _, iy = ax.px(0, IRREDUCIBLE)
     body += (f'<line x1="{ax.l}" y1="{iy:.1f}" x2="{ax.l + ax.w}" y2="{iy:.1f}" stroke="{AXIS}" '
              f'stroke-width="1.5" stroke-dasharray="6 5"/>\n'
@@ -134,9 +134,9 @@ def train_test_mse():
     mx, my = ax.px(xmin, test_mse(xmin))
     body += (f'<circle cx="{mx:.1f}" cy="{my:.1f}" r="6" fill="{RED}"/>\n'
              f'<text x="{ax.l + ax.w - 4}" y="{ax.px(1, test_mse(1))[1] - 12:.1f}" text-anchor="end" '
-             f'font-size="15" font-weight="600" fill="{RED}">Test MSE</text>\n'
+             f'font-size="15" font-weight="600" fill="{RED}">EQM de teste</text>\n'
              f'<text x="{ax.l + ax.w - 4}" y="{ax.px(1, train_mse(1))[1] - 12:.1f}" text-anchor="end" '
-             f'font-size="15" font-weight="600" fill="{BLUE}">Training MSE</text>\n')
+             f'font-size="15" font-weight="600" fill="{BLUE}">EQM de treino</text>\n')
     (OUT / "train-test-mse.svg").write_text(svg(600, 370, body))
 
 
@@ -163,10 +163,10 @@ def bayes_classifier():
     body += f'<rect x="{l}" y="{t}" width="{w}" height="{h}" fill="none" stroke="{GRID}" stroke-width="1.5"/>\n'
     ly = t + h + 26
     body += (f'<line x1="{l}" y1="{ly}" x2="{l + 34}" y2="{ly}" stroke="{PURPLE}" stroke-width="3" stroke-dasharray="8 6"/>\n'
-             f'<text x="{l + 42}" y="{ly + 5}" font-size="15" font-weight="600" fill="{PURPLE}">Bayes decision boundary</text>\n'
-             f'<circle cx="{l + 260}" cy="{ly}" r="5" fill="{AMBER}"/><text x="{l + 270}" y="{ly + 5}" font-size="15" fill="{INK}">class A</text>\n'
-             f'<circle cx="{l + 330}" cy="{ly}" r="5" fill="{BLUE}"/><text x="{l + 340}" y="{ly + 5}" font-size="15" fill="{INK}">B</text>\n')
-    (OUT / "bayes-classifier.svg").write_text(svg(420, 385, body))
+             f'<text x="{l + 42}" y="{ly + 5}" font-size="15" font-weight="600" fill="{PURPLE}">Fronteira de decisão de Bayes</text>\n'
+             f'<circle cx="{l + 17}" cy="{ly + 26}" r="5" fill="{AMBER}"/><text x="{l + 42}" y="{ly + 31}" font-size="15" fill="{INK}">classe A</text>\n'
+             f'<circle cx="{l + 137}" cy="{ly + 26}" r="5" fill="{BLUE}"/><text x="{l + 150}" y="{ly + 31}" font-size="15" fill="{INK}">classe B</text>\n')
+    (OUT / "bayes-classifier.svg").write_text(svg(420, 410, body))
 
 
 def bias_variance_paths():

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 340" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
 <rect width="820" height="340" fill="#ffffff"/>
 <rect x="30" y="50" width="350" height="270" rx="10" fill="none" stroke="#e3e7ee" stroke-width="1.5"/>
-<text x="30" y="34" font-size="16" font-weight="600" fill="#1b2333">Supervised: every xᵢ has a label yᵢ</text>
+<text x="30" y="34" font-size="16" font-weight="600" fill="#1b2333">Supervisionado: cada xᵢ tem um rótulo yᵢ</text>
 <circle cx="120.8" cy="120.0" r="5" fill="#2a8c7d" fill-opacity="0.85"/>
 <circle cx="121.7" cy="137.8" r="5" fill="#2a8c7d" fill-opacity="0.85"/>
 <circle cx="102.0" cy="135.6" r="5" fill="#2a8c7d" fill-opacity="0.85"/>
@@ -69,7 +69,7 @@
 <circle cx="200.1" cy="241.1" r="5" fill="#6c4fb0" fill-opacity="0.85"/>
 <circle cx="221.0" cy="247.1" r="5" fill="#6c4fb0" fill-opacity="0.85"/>
 <rect x="450" y="50" width="350" height="270" rx="10" fill="none" stroke="#e3e7ee" stroke-width="1.5"/>
-<text x="450" y="34" font-size="16" font-weight="600" fill="#1b2333">Unsupervised: only xᵢ, find the groups</text>
+<text x="450" y="34" font-size="16" font-weight="600" fill="#1b2333">Não supervisionado: só xᵢ, achar grupos</text>
 <ellipse cx="548.0" cy="131.0" rx="62" ry="52" fill="none" stroke="#6b7487" stroke-width="1.5" stroke-dasharray="6 5"/>
 <ellipse cx="695.0" cy="125.6" rx="62" ry="52" fill="none" stroke="#6b7487" stroke-width="1.5" stroke-dasharray="6 5"/>
 <ellipse cx="625.0" cy="247.1" rx="62" ry="52" fill="none" stroke="#6b7487" stroke-width="1.5" stroke-dasharray="6 5"/>

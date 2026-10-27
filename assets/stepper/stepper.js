@@ -23,6 +23,25 @@
     full: '<path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/>',
   };
 
+  // Interface text, picked from the page's <html lang>.
+  const STRINGS = {
+    en: {
+      restart: "Restart", prev: "Previous", next: "Next", play: "Play", pause: "Pause",
+      replay: "Replay", stepMode: "Step-by-step", full: "Full screen",
+      goTo: (n) => "Go to step " + n, count: (n, t) => "Step " + n + " of " + t,
+      hint: "<kbd>Space</kbd> play or pause, <kbd>←</kbd> <kbd>→</kbd> previous or next step, " +
+        "<kbd>S</kbd> step-by-step, <kbd>R</kbd> restart, <kbd>F</kbd> full screen",
+    },
+    pt: {
+      restart: "Reiniciar", prev: "Anterior", next: "Próximo", play: "Reproduzir", pause: "Pausar",
+      replay: "Repetir", stepMode: "Passo a passo", full: "Tela cheia",
+      goTo: (n) => "Ir para o passo " + n, count: (n, t) => "Passo " + n + " de " + t,
+      hint: "<kbd>Espaço</kbd> reproduzir ou pausar, <kbd>←</kbd> <kbd>→</kbd> passo anterior ou próximo, " +
+        "<kbd>S</kbd> passo a passo, <kbd>R</kbd> reiniciar, <kbd>F</kbd> tela cheia",
+    },
+  };
+  const T = STRINGS[(document.documentElement.lang || "en").slice(0, 2).toLowerCase()] || STRINGS.en;
+
   function icon(name) {
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" ' +
       'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS[name] + "</svg>";
@@ -33,7 +52,7 @@
     b.type = "button";
     b.className = "st-btn " + cls;
     b.innerHTML = icon(iconName) + (label ? '<span class="st-label">' + label + "</span>" : "");
-    if (!label) b.setAttribute("aria-label", iconName === "full" ? "Full screen" : iconName);
+    if (!label) b.setAttribute("aria-label", iconName === "full" ? T.full : iconName);
     return b;
   }
 
@@ -92,7 +111,7 @@
     const segs = steps.map((_, i) => {
       const s = document.createElement("button");
       s.type = "button";
-      s.setAttribute("aria-label", "Go to step " + (i + 1));
+      s.setAttribute("aria-label", T.goTo(i + 1));
       s.addEventListener("click", () => { pause(); go(i + 1); });
       progress.append(s);
       return s;
@@ -100,15 +119,15 @@
 
     const controls = document.createElement("div");
     controls.className = "st-controls";
-    const bRestart = button("restart", "restart", "Restart");
-    const bPrev = button("", "prev", "Previous");
-    const bMain = button("primary", "play", "Play");
-    const bNext = button("", "next", "Next");
-    bNext.innerHTML = '<span class="st-label">Next</span>' + icon("next");
+    const bRestart = button("restart", "restart", T.restart);
+    const bPrev = button("", "prev", T.prev);
+    const bMain = button("primary", "play", T.play);
+    const bNext = button("", "next", T.next);
+    bNext.innerHTML = '<span class="st-label">' + T.next + "</span>" + icon("next");
     const bFull = button("icon-only", "full");
     const toggle = document.createElement("label");
     toggle.className = "st-toggle";
-    toggle.innerHTML = '<input type="checkbox"><span class="st-switch"></span><span>Step-by-step</span>';
+    toggle.innerHTML = '<input type="checkbox"><span class="st-switch"></span><span>' + T.stepMode + "</span>";
     const toggleInput = toggle.querySelector("input");
     const count = document.createElement("span");
     count.className = "st-count";
@@ -116,8 +135,7 @@
 
     const hint = document.createElement("div");
     hint.className = "st-hint";
-    hint.innerHTML = "<kbd>Space</kbd> play or pause, <kbd>←</kbd> <kbd>→</kbd> previous or next step, " +
-      "<kbd>S</kbd> step-by-step, <kbd>R</kbd> restart, <kbd>F</kbd> full screen";
+    hint.innerHTML = T.hint;
 
     bar.append(progress, controls, hint);
     root.append(bar);
@@ -145,10 +163,11 @@
       segs.forEach((s, i) => s.classList.toggle("is-done", i < step));
       bPrev.disabled = step <= 1;
       bNext.disabled = step >= total;
-      count.textContent = "Step " + step + " of " + total;
+      count.textContent = T.count(step, total);
+      root.dataset.at = step; // lets CSS style a drawing per step: .stepper[data-at="2"] …
 
       const atEnd = step >= total && !playing;
-      const label = playing ? "Pause" : atEnd ? "Replay" : "Play";
+      const label = playing ? T.pause : atEnd ? T.replay : T.play;
       bMain.innerHTML = icon(playing ? "pause" : atEnd ? "restart" : "play") + '<span class="st-label">' + label + "</span>";
       bMain.setAttribute("aria-label", label);
     }
@@ -229,7 +248,8 @@
         for (const entry of entries) {
           if (entry.isIntersecting && !started) {
             started = true;
-            if (autoplay && !toggleInput.checked) play();
+            // Don't autoplay if the viewer already moved on (e.g. with the keys).
+            if (autoplay && !toggleInput.checked && step === 1) play();
           } else if (!entry.isIntersecting && playing) {
             pause();
           }

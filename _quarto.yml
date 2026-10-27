@@ -13,6 +13,9 @@ project:
     - "ch*/**/figures/"
     - "ch*/**/files/"
 
+# Course language: also translates Quarto's own labels (table of contents, etc.).
+lang: pt-BR
+
 # Shared settings for every chapter. Each chapter's front matter only sets
 # its title and the two output file names.
 format:
@@ -28,7 +31,7 @@ format:
     code-copy: true
     smooth-scroll: true
     include-before-body:
-      - text: '<a class="home-link" href="../../index.html">← Course home</a>'
+      - text: '<a class="home-link" href="../../index.html">← Página do curso</a>'
   revealjs:
     theme: [default, styles/slides.scss]
     # "## 1.1" = section slide, "### 1.1.1" = one content slide.

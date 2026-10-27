@@ -15,41 +15,42 @@
   .note, .heading, .arrow (arrowhead added automatically), .group (dashed
   frame), .draw (line is drawn in when it appears).
   data-interval on .stepper sets the autoplay delay in ms;
-  data-autoplay="false" starts paused.
+  data-autoplay="false" starts paused. The player sets data-at="<step>" on
+  .stepper, so CSS can restyle a drawing per step (see ml-learn-from-data.html).
 -->
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Animation title</title>
+  <title>Título da animação</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../../../assets/stepper/stepper.css">
 </head>
 <body>
   <div class="stepper" data-interval="2600">
     <div class="st-stage">
-      <svg viewBox="0 0 1000 400" role="img" aria-label="Describe the diagram">
+      <svg viewBox="0 0 1000 400" role="img" aria-label="Descreva o diagrama">
         <g data-step="1">
           <rect class="box teal" x="80" y="180" width="160" height="44" rx="8"/>
-          <text class="label teal" x="160" y="202">input</text>
+          <text class="label teal" x="160" y="202">entrada</text>
         </g>
         <g data-step="2">
           <path class="arrow draw" d="M240 202 L398 202"/>
           <rect class="box" x="400" y="150" width="200" height="104" rx="10"/>
-          <text class="label big" x="500" y="202">model</text>
+          <text class="label big" x="500" y="202">modelo</text>
         </g>
         <g data-step="3">
           <path class="arrow draw" d="M600 202 L758 202"/>
           <rect class="box blue" x="760" y="180" width="160" height="44" rx="4"/>
-          <text class="label blue" x="840" y="202">prediction</text>
+          <text class="label blue" x="840" y="202">predição</text>
         </g>
       </svg>
     </div>
 
     <ol class="st-steps">
-      <li><h3>Step one</h3><p>What appears first and why it matters.</p></li>
-      <li><h3>Step two</h3><p>What gets added next.</p></li>
-      <li><h3>Step three</h3><p>The conclusion.</p></li>
+      <li><h3>Passo um</h3><p>O que aparece primeiro e por que importa.</p></li>
+      <li><h3>Passo dois</h3><p>O que é acrescentado em seguida.</p></li>
+      <li><h3>Passo três</h3><p>A conclusão.</p></li>
     </ol>
   </div>
   <script src="../../../assets/stepper/stepper.js"></script>
