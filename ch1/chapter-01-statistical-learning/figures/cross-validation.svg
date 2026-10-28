@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 338" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+<rect width="700" height="338" fill="#ffffff"/>
+<text x="120.0" y="26.0" font-size="16" fill="#1b2333" text-anchor="start" font-weight="600" >Dados de treino (n observações) divididos em k = 5 <tspan font-style="italic">folds</tspan></text>
+<rect x="120" y="40" width="480" height="12" rx="3" fill="#e3e7ee"/>
+<text x="106.0" y="93.0" font-size="14" fill="#5c6577" text-anchor="end" font-weight="600" >Rodada 1</text>
+<rect x="122" y="70" width="92" height="36" rx="6" fill="#fbefd9" stroke="#b9822c" stroke-width="1.5"/>
+<text x="168.0" y="93.0" font-size="13" fill="#7a5212" text-anchor="middle" font-weight="700" >validation</text>
+<rect x="218" y="70" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="314" y="70" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="410" y="70" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="506" y="70" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<text x="618.0" y="93.0" font-size="16" fill="#1b2333" text-anchor="start" font-weight="700" >MSE<tspan baseline-shift="sub" font-size="11">1</tspan></text>
+<text x="106.0" y="139.0" font-size="14" fill="#5c6577" text-anchor="end" font-weight="600" >Rodada 2</text>
+<rect x="122" y="116" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="218" y="116" width="92" height="36" rx="6" fill="#fbefd9" stroke="#b9822c" stroke-width="1.5"/>
+<text x="264.0" y="139.0" font-size="13" fill="#7a5212" text-anchor="middle" font-weight="700" >validation</text>
+<rect x="314" y="116" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="410" y="116" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="506" y="116" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<text x="618.0" y="139.0" font-size="16" fill="#1b2333" text-anchor="start" font-weight="700" >MSE<tspan baseline-shift="sub" font-size="11">2</tspan></text>
+<text x="106.0" y="185.0" font-size="14" fill="#5c6577" text-anchor="end" font-weight="600" >Rodada 3</text>
+<rect x="122" y="162" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="218" y="162" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="314" y="162" width="92" height="36" rx="6" fill="#fbefd9" stroke="#b9822c" stroke-width="1.5"/>
+<text x="360.0" y="185.0" font-size="13" fill="#7a5212" text-anchor="middle" font-weight="700" >validation</text>
+<rect x="410" y="162" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="506" y="162" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<text x="618.0" y="185.0" font-size="16" fill="#1b2333" text-anchor="start" font-weight="700" >MSE<tspan baseline-shift="sub" font-size="11">3</tspan></text>
+<text x="106.0" y="231.0" font-size="14" fill="#5c6577" text-anchor="end" font-weight="600" >Rodada 4</text>
+<rect x="122" y="208" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="218" y="208" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="314" y="208" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="410" y="208" width="92" height="36" rx="6" fill="#fbefd9" stroke="#b9822c" stroke-width="1.5"/>
+<text x="456.0" y="231.0" font-size="13" fill="#7a5212" text-anchor="middle" font-weight="700" >validation</text>
+<rect x="506" y="208" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<text x="618.0" y="231.0" font-size="16" fill="#1b2333" text-anchor="start" font-weight="700" >MSE<tspan baseline-shift="sub" font-size="11">4</tspan></text>
+<text x="106.0" y="277.0" font-size="14" fill="#5c6577" text-anchor="end" font-weight="600" >Rodada 5</text>
+<rect x="122" y="254" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="218" y="254" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="314" y="254" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="410" y="254" width="92" height="36" rx="6" fill="#dde8f7" stroke="#3d68a8" stroke-width="1.5"/>
+<rect x="506" y="254" width="92" height="36" rx="6" fill="#fbefd9" stroke="#b9822c" stroke-width="1.5"/>
+<text x="552.0" y="277.0" font-size="13" fill="#7a5212" text-anchor="middle" font-weight="700" >validation</text>
+<text x="618.0" y="277.0" font-size="16" fill="#1b2333" text-anchor="start" font-weight="700" >MSE<tspan baseline-shift="sub" font-size="11">5</tspan></text>
+<rect x="120" y="308" width="22" height="16" rx="4" fill="#dde8f7" stroke="#3d68a8"/><text x="150.0" y="321.0" font-size="14" fill="#1b2333" text-anchor="start" font-weight="400" >training (ajusta o modelo)</text>
+<rect x="370" y="308" width="22" height="16" rx="4" fill="#fbefd9" stroke="#b9822c"/><text x="400.0" y="321.0" font-size="14" fill="#1b2333" text-anchor="start" font-weight="400" >validation (mede o erro)</text>
+</svg>

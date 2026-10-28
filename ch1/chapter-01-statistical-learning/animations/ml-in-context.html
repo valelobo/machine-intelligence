@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Machine learning em contexto</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../../../assets/stepper/stepper.css">
+  <style>
+    /* Two players on one page, switched with tabs (keys 1 and 2). */
+    body { display: flex; flex-direction: column; gap: 8px; }
+    .tabs-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .tabs-head h1 { margin: 0; font-size: 1.15rem; letter-spacing: -0.01em; }
+    .tabs { display: inline-flex; gap: 4px; padding: 4px; border-radius: 12px; background: #e9ecf2; }
+    .tabs button {
+      display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 9px;
+      padding: 7px 14px; background: transparent; color: var(--st-muted); font: 600 0.95rem/1 inherit; cursor: pointer;
+    }
+    .tabs button span {
+      display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+      border: 1.5px solid currentColor; font-size: 0.78rem;
+    }
+    .tabs button[aria-selected="true"] { background: #fff; color: var(--st-ink); box-shadow: 0 1px 3px rgb(0 0 0 / 0.12); }
+    .tabs button:focus-visible { outline: 3px solid #8f78cf; outline-offset: 2px; }
+    .tab-panel { flex: 1; min-height: 0; }
+    .tab-panel[hidden] { display: none; }
+
+    .set { stroke-width: 2; fill-opacity: 0.28; }
+    .set.cs { fill: var(--d-blue-fill); stroke: var(--d-blue-stroke); fill-opacity: 0.75; }
+    .set.st { fill: var(--d-teal-fill); stroke: var(--d-teal-stroke); fill-opacity: 0.75; }
+    .set.dom { fill: #e6e8ee; stroke: var(--d-stroke); fill-opacity: 0.75; }
+    .ai { fill: var(--d-purple-fill); fill-opacity: 0.55; stroke: var(--d-purple-stroke); stroke-width: 2; stroke-dasharray: 7 5; }
+    .ml { fill: var(--d-purple-stroke); stroke: var(--d-purple-ink); stroke-width: 2; }
+    .ml-soft { fill: var(--d-purple-fill); fill-opacity: 0.8; stroke: var(--d-purple-stroke); stroke-width: 2; }
+    .t { font: 600 14px "Inter", system-ui, sans-serif; text-anchor: middle; }
+    .t.sm { font-size: 12px; }
+    .t.blue { fill: var(--d-blue-ink); }
+    .t.teal { fill: var(--d-teal-ink); }
+    .t.grey { fill: #3c4352; }
+    .t.purple { fill: var(--d-purple-ink); }
+    .t.white { fill: #fff; }
+    .pill { fill: #fff; stroke: #3c4352; stroke-width: 1.5; }
+    .pill.dark { fill: var(--d-purple-ink); stroke: var(--d-purple-ink); }
+    .icon { font: 700 13px "JetBrains Mono", ui-monospace, monospace; text-anchor: middle; }
+  </style>
+</head>
+<body>
+  <div class="tabs-head">
+    <h1>Machine learning em contexto</h1>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" aria-controls="tab-1" id="t1"><span>1</span>Onde o ML se encaixa</button>
+      <button role="tab" aria-selected="false" aria-controls="tab-2" id="t2"><span>2</span>Perfis profissionais</button>
+    </div>
+  </div>
+
+  <!-- Tab 1: where machine learning sits -->
+  <div class="tab-panel" id="tab-1" role="tabpanel" aria-labelledby="t1">
+    <div class="stepper" data-interval="2800">
+      <div class="st-stage">
+        <svg viewBox="0 0 600 420" role="img" aria-label="Ciência da Computação, Estatística e Domínio de aplicação se sobrepõem. Inteligência Artificial fica no encontro entre Computação e Estatística; Machine Learning é um subconjunto da Inteligência Artificial, onde as três áreas se encontram.">
+          <g data-step="1">
+            <circle class="set cs" cx="225" cy="165" r="125"/>
+            <text class="icon" x="160" y="128" fill="var(--d-blue-ink)">&lt;/&gt;</text>
+            <text class="t blue" x="160" y="150">Ciência da</text>
+            <text class="t blue" x="160" y="168">Computação</text>
+          </g>
+          <g data-step="2">
+            <circle class="set st" cx="375" cy="165" r="125"/>
+            <text class="t teal" x="442" y="160">Estatística</text>
+          </g>
+          <g data-step="3">
+            <circle class="set dom" cx="300" cy="290" r="125"/>
+            <text class="t grey" x="300" y="368">Domínio de</text>
+            <text class="t grey" x="300" y="386">aplicação</text>
+          </g>
+          <g data-step="4">
+            <ellipse class="ai" cx="300" cy="165" rx="46" ry="95"/>
+            <text class="t sm purple" x="300" y="122">Inteligência</text>
+            <text class="t sm purple" x="300" y="137">Artificial</text>
+          </g>
+          <g data-step="5">
+            <circle class="ml" cx="300" cy="212" r="34"/>
+            <text class="t sm white" x="300" y="209">Machine</text>
+            <text class="t sm white" x="300" y="224">Learning</text>
+          </g>
+          <g data-step="6"></g>
+        </svg>
+      </div>
+      <ol class="st-steps">
+        <li><h3>Ciência da Computação</h3><p>Algoritmos, programação e sistemas: como fazer o computador executar uma tarefa.</p></li>
+        <li><h3>Estatística</h3><p>Como aprender com dados quando há incerteza e ruído.</p></li>
+        <li><h3>Domínio de aplicação</h3><p>A área em que o problema real existe: engenharia, saúde, economia…</p></li>
+        <li><h3>Artificial Intelligence</h3><p>Sistemas que realizam tarefas que pareceriam exigir inteligência. Fica no encontro entre computação e estatística.</p></li>
+        <li><h3>Machine Learning</h3><p>Um subconjunto da IA: sistemas que aprendem as regras a partir de dados.</p></li>
+        <li><h3>O quadro completo</h3><p>ML ⊂ IA, e o ML vive onde computação, estatística e domínio de aplicação se encontram.</p></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Tab 2: the skills behind each profile -->
+  <div class="tab-panel" id="tab-2" role="tabpanel" aria-labelledby="t2" hidden>
+    <div class="stepper" data-interval="2800">
+      <div class="st-stage">
+        <svg viewBox="0 0 600 420" role="img" aria-label="Programação, Matemática e Estatística e Domínio de aplicação se sobrepõem. Engenharia de software combina programação e domínio; ciência tradicional combina matemática e domínio; Machine Learning combina programação e matemática; cientista de dados ou de ML fica no centro.">
+          <g data-step="1">
+            <circle class="set cs" cx="225" cy="165" r="125"/>
+            <text class="icon" x="158" y="128" fill="var(--d-blue-ink)">&lt;/&gt;</text>
+            <text class="t blue" x="158" y="150">Programação</text>
+          </g>
+          <g data-step="2">
+            <circle class="set st" cx="375" cy="165" r="125"/>
+            <text class="t teal" x="444" y="146">Matemática e</text>
+            <text class="t teal" x="444" y="164">Estatística</text>
+          </g>
+          <g data-step="3">
+            <circle class="set dom" cx="300" cy="290" r="125"/>
+            <text class="t grey" x="300" y="368">Domínio de</text>
+            <text class="t grey" x="300" y="386">aplicação</text>
+          </g>
+          <g data-step="4">
+            <ellipse class="ml-soft" cx="300" cy="172" rx="46" ry="100"/>
+            <text class="t sm purple" x="300" y="112">Machine</text>
+            <text class="t sm purple" x="300" y="127">Learning</text>
+          </g>
+          <g data-step="5">
+            <rect class="pill" x="153" y="246" width="104" height="34" rx="17"/>
+            <text class="t sm grey" x="205" y="260">Engenheiro(a)</text>
+            <text class="t sm grey" x="205" y="274">de software</text>
+          </g>
+          <g data-step="6">
+            <rect class="pill" x="343" y="246" width="104" height="34" rx="17"/>
+            <text class="t sm grey" x="395" y="260">Cientista</text>
+            <text class="t sm grey" x="395" y="274">tradicional</text>
+          </g>
+          <g data-step="7">
+            <rect class="pill dark" x="254" y="206" width="92" height="38" rx="19"/>
+            <text class="t sm white" x="300" y="222">Cientista de</text>
+            <text class="t sm white" x="300" y="237">dados / ML</text>
+          </g>
+          <g data-step="8"></g>
+        </svg>
+      </div>
+      <ol class="st-steps">
+        <li><h3>Programação</h3><p>Escrever código: algoritmos, estruturas de dados e software.</p></li>
+        <li><h3>Matemática e Estatística</h3><p>Álgebra linear, probabilidade, otimização e inferência.</p></li>
+        <li><h3>Domínio de aplicação</h3><p>Conhecer a área em que os problemas reais aparecem.</p></li>
+        <li><h3>Machine Learning</h3><p>Nasce do encontro entre programação e matemática/estatística.</p></li>
+        <li><h3>Engenheiro(a) de software</h3><p>Programação + domínio: constrói sistemas, sem necessariamente modelar dados.</p></li>
+        <li><h3>Cientista tradicional</h3><p>Matemática/estatística + domínio: modela fenômenos, com menos foco em código.</p></li>
+        <li><h3>Cientista de dados / ML</h3><p>No centro: combina as três competências.</p></li>
+        <li><h3>O quadro completo</h3><p>Cada perfil profissional nasce de uma combinação diferente dessas competências.</p></li>
+      </ol>
+    </div>
+  </div>
+
+  <script src="../../../assets/stepper/stepper.js"></script>
+  <script>
+    // Tab switching: click, or press 1 / 2.
+    (function () {
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+      function show(i) {
+        tabs.forEach((t, j) => {
+          t.setAttribute("aria-selected", String(i === j));
+          document.getElementById(t.getAttribute("aria-controls")).hidden = i !== j;
+        });
+      }
+      tabs.forEach((t, i) => t.addEventListener("click", () => show(i)));
+      document.addEventListener("keydown", (e) => {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        if (e.key === "1" || e.key === "2") show(Number(e.key) - 1);
+      });
+    })();
+  </script>
+</body>
+</html>

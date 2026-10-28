@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>O trade-off entre viés e variância</title>
+  <title>Bias-variance trade-off</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../../../assets/stepper/stepper.css">
   <style>
@@ -20,7 +20,7 @@
 <body>
   <div class="stepper" data-interval="3000">
     <div class="st-stage">
-      <svg viewBox="0 0 900 410" role="img" aria-label="Viés ao quadrado, variância e erro irredutível somam um erro de teste esperado em formato de U">
+      <svg viewBox="0 0 900 410" role="img" aria-label="Bias ao quadrado, variance e irreducible error somam um test error esperado em formato de U">
 
         <!-- Step 1: axes -->
         <g data-step="1">
@@ -34,13 +34,13 @@
         <!-- Step 2: squared bias -->
         <g data-step="2">
           <path class="curve bias draw" d="M80.0 123.5 L90.3 137.8 L100.7 151.2 L111.0 163.7 L121.3 175.4 L131.7 186.3 L142.0 196.6 L152.3 206.2 L162.7 215.1 L173.0 223.5 L183.3 231.3 L193.7 238.7 L204.0 245.5 L214.3 252.0 L224.7 258.0 L235.0 263.6 L245.3 268.8 L255.7 273.8 L266.0 278.4 L276.3 282.7 L286.7 286.7 L297.0 290.4 L307.3 294.0 L317.7 297.3 L328.0 300.3 L338.3 303.2 L348.7 305.9 L359.0 308.5 L369.3 310.8 L379.7 313.0 L390.0 315.1 L400.3 317.0 L410.7 318.8 L421.0 320.5 L431.3 322.1 L441.7 323.6 L452.0 325.0 L462.3 326.3 L472.7 327.5 L483.0 328.6 L493.3 329.7 L503.7 330.7 L514.0 331.6 L524.3 332.5 L534.7 333.3 L545.0 334.0 L555.3 334.8 L565.7 335.4 L576.0 336.0 L586.3 336.6 L596.7 337.2 L607.0 337.7 L617.3 338.2 L627.7 338.6 L638.0 339.0 L648.3 339.4 L658.7 339.8 L669.0 340.1 L679.3 340.4 L689.7 340.7 L700.0 341.0"/>
-          <text class="curve-label" x="712" y="342" fill="var(--d-blue-ink)">Viés²</text>
+          <text class="curve-label" x="712" y="342" fill="var(--d-blue-ink)">Bias²</text>
         </g>
 
         <!-- Step 3: variance -->
         <g data-step="3">
           <path class="curve var draw" d="M80.0 342.6 L90.3 342.6 L100.7 342.6 L111.0 342.5 L121.3 342.4 L131.7 342.2 L142.0 342.0 L152.3 341.7 L162.7 341.3 L173.0 340.9 L183.3 340.4 L193.7 339.8 L204.0 339.1 L214.3 338.3 L224.7 337.4 L235.0 336.5 L245.3 335.4 L255.7 334.2 L266.0 332.9 L276.3 331.5 L286.7 330.0 L297.0 328.3 L307.3 326.6 L317.7 324.7 L328.0 322.7 L338.3 320.5 L348.7 318.3 L359.0 315.9 L369.3 313.3 L379.7 310.6 L390.0 307.8 L400.3 304.8 L410.7 301.7 L421.0 298.4 L431.3 295.0 L441.7 291.4 L452.0 287.7 L462.3 283.8 L472.7 279.8 L483.0 275.5 L493.3 271.2 L503.7 266.6 L514.0 261.9 L524.3 257.0 L534.7 251.9 L545.0 246.7 L555.3 241.3 L565.7 235.7 L576.0 229.9 L586.3 223.9 L596.7 217.8 L607.0 211.4 L617.3 204.9 L627.7 198.2 L638.0 191.3 L648.3 184.2 L658.7 176.9 L669.0 169.4 L679.3 161.7 L689.7 153.8 L700.0 145.7"/>
-          <text class="curve-label" x="712" y="150" fill="var(--d-amber-ink)">Variância</text>
+          <text class="curve-label" x="712" y="150" fill="var(--d-amber-ink)">Variance</text>
         </g>
 
         <!-- Step 4: irreducible error -->
@@ -52,7 +52,7 @@
         <!-- Step 5: expected test MSE = sum -->
         <g data-step="5">
           <path class="curve test draw" d="M80.0 54.6 L90.3 68.9 L100.7 82.2 L111.0 94.7 L121.3 106.2 L131.7 117.0 L142.0 127.0 L152.3 136.3 L162.7 144.9 L173.0 152.9 L183.3 160.2 L193.7 166.9 L204.0 173.1 L214.3 178.7 L224.7 183.9 L235.0 188.5 L245.3 192.7 L255.7 196.4 L266.0 199.7 L276.3 202.6 L286.7 205.1 L297.0 207.3 L307.3 209.0 L317.7 210.4 L328.0 211.5 L338.3 212.2 L348.7 212.7 L359.0 212.8 L369.3 212.6 L379.7 212.1 L390.0 211.4 L400.3 210.3 L410.7 209.0 L421.0 207.4 L431.3 205.6 L441.7 203.5 L452.0 201.1 L462.3 198.5 L472.7 195.7 L483.0 192.6 L493.3 189.3 L503.7 185.7 L514.0 182.0 L524.3 177.9 L534.7 173.7 L545.0 169.2 L555.3 164.5 L565.7 159.6 L576.0 154.4 L586.3 149.0 L596.7 143.4 L607.0 137.6 L617.3 131.5 L627.7 125.3 L638.0 118.8 L648.3 112.1 L658.7 105.1 L669.0 98.0 L679.3 90.6 L689.7 83.0 L700.0 75.2"/>
-          <text class="curve-label" x="712" y="80" fill="#b4495a">EQM de teste</text>
+          <text class="curve-label" x="712" y="80" fill="#b4495a">Test MSE</text>
         </g>
 
         <!-- Step 6: the optimum and the two regimes -->
@@ -60,36 +60,36 @@
           <line class="floor" x1="357.4" y1="212.8" x2="357.4" y2="350"/>
           <circle cx="357.4" cy="212.8" r="7" fill="#b4495a"/>
           <text class="label" x="357.4" y="190" fill="#b4495a">melhor equilíbrio</text>
-          <text class="heading" x="190" y="58" text-anchor="middle">← subajuste (viés alto)</text>
-          <text class="heading" x="530" y="58" text-anchor="middle">sobreajuste (variância alta) →</text>
+          <text class="heading" x="190" y="58" text-anchor="middle">← underfitting (high bias)</text>
+          <text class="heading" x="530" y="58" text-anchor="middle">overfitting (high variance) →</text>
         </g>
       </svg>
     </div>
 
     <ol class="st-steps">
       <li>
-        <h3>Erro de teste esperado</h3>
-        <p>Para um ponto de teste x₀, o erro esperado se divide em três partes. Vamos traçar cada uma em função da flexibilidade do modelo.</p>
+        <h3>Expected test MSE</h3>
+        <p>Para um ponto de teste <strong>x</strong>₀, o erro esperado se divide em três partes. Vamos traçar cada uma em função da flexibilidade do modelo.</p>
       </li>
       <li>
-        <h3>Viés ao quadrado</h3>
+        <h3>Bias²</h3>
         <p>Erro por aproximar um problema complicado com um modelo simples. Diminui à medida que o modelo fica mais flexível.</p>
       </li>
       <li>
-        <h3>Variância</h3>
-        <p>Quanto f̂ mudaria com outro conjunto de treino. Modelos flexíveis seguem o ruído, então a variância cresce.</p>
+        <h3>Variance</h3>
+        <p>Quanto f̂ mudaria com outro <em>training set</em>. Modelos flexíveis seguem o ruído, então a <em>variance</em> cresce.</p>
       </li>
       <li>
-        <h3>Erro irredutível</h3>
-        <p>Var(ε) é um ruído que nenhum modelo consegue remover. É um piso para o erro de teste.</p>
+        <h3>Irreducible error</h3>
+        <p>Var(ε) é um ruído que nenhum modelo consegue remover. É um piso para o <em>test error</em>.</p>
       </li>
       <li>
-        <h3>A soma: EQM de teste</h3>
-        <p>E(y₀ − f̂(x₀))² = Var(f̂(x₀)) + Viés(f̂(x₀))² + Var(ε). Somando as curvas, obtemos um formato em U.</p>
+        <h3>A soma: test MSE</h3>
+        <p>E(y₀ − f̂(<strong>x</strong>₀))² = Var(f̂(<strong>x</strong>₀)) + Bias(f̂(<strong>x</strong>₀))² + Var(ε). Somando as curvas, obtemos um formato em U.</p>
       </li>
       <li>
-        <h3>O equilíbrio</h3>
-        <p>O melhor modelo equilibra viés e variância. Simples demais causa subajuste; flexível demais, sobreajuste.</p>
+        <h3>O trade-off</h3>
+        <p>O melhor modelo equilibra <em>bias</em> e <em>variance</em>. Simples demais causa <em>underfitting</em>; flexível demais, <em>overfitting</em>.</p>
       </li>
     </ol>
   </div>

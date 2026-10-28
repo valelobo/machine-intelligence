@@ -229,6 +229,7 @@
 
     document.addEventListener("keydown", (e) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (root.closest("[hidden]")) return; // another tab's player is showing
       const k = e.key.toLowerCase();
       if (k === " ") { e.preventDefault(); togglePlay(); }
       else if (k === "arrowright") { e.preventDefault(); pause(); go(step + 1); }

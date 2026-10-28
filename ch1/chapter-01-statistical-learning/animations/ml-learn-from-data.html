@@ -3,45 +3,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pensamento computacional versus aprendizado</title>
+  <title>Classical CT versus Intelligent CT</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../../../assets/stepper/stepper.css">
   <style>
-    /* The computational-thinking box: large on step 1, then it shrinks into a
-       frame around the programming row. */
+    /* The computational-thinking box: large on step 1, then it shrinks into
+       the "a. Classical CT" frame around the hand-written-rules row. */
     #ct-box {
-      x: 15px; y: 8px; width: 625px; height: 152px;
+      x: 12px; y: 8px; width: 630px; height: 152px;
       fill: var(--d-purple-fill); fill-opacity: 0.35;
       stroke: var(--d-purple-stroke); stroke-width: 2;
       transition: x 0.7s ease, y 0.7s ease, width 0.7s ease, height 0.7s ease, fill-opacity 0.7s ease;
     }
-    .stepper[data-at="1"] #ct-box { x: 260px; y: 125px; width: 480px; height: 150px; fill-opacity: 1; }
+    .stepper[data-at="1"] #ct-box { x: 250px; y: 155px; width: 500px; height: 160px; fill-opacity: 1; }
     .ct-title { fill: var(--d-purple-ink); font: 700 30px "Inter", system-ui, sans-serif; text-anchor: middle; }
+    .frame-title { fill: var(--d-purple-ink); font: 700 16px "Inter", system-ui, sans-serif; }
+    .intelligent { fill: var(--d-teal-fill); fill-opacity: 0.35; stroke: var(--d-teal-stroke); stroke-width: 2; }
+    .frame-title.teal { fill: var(--d-teal-ink); }
     .label.small { font-size: 16px; }
   </style>
 </head>
 <body>
-  <div class="stepper" data-interval="3000">
+  <div class="stepper" data-interval="3200">
     <div class="st-stage">
-      <svg viewBox="0 0 1000 430" role="img" aria-label="Pensamento computacional comparado com o treinamento e o teste de um modelo de aprendizado de máquina">
+      <svg viewBox="0 0 1000 470" role="img" aria-label="Classical computational thinking, em que uma pessoa escreve as regras, comparado com intelligent computational thinking, em que o computador aprende as regras com dados">
 
-        <!-- Step 1: computational thinking (the box stays and becomes a frame) -->
+        <!-- Step 1: computational thinking (the box stays and becomes frame a) -->
         <g data-step="1">
-          <rect id="ct-box" x="15" y="8" width="625" height="152" rx="14"/>
+          <rect id="ct-box" x="12" y="8" width="630" height="152" rx="14"/>
         </g>
         <g data-step="1" data-until="1">
-          <text class="ct-title" x="500" y="196">Pensamento computacional</text>
-          <text class="note" x="500" y="236" style="font-size:16px">decomposição · padrões · abstração · algoritmos</text>
+          <text class="ct-title" x="500" y="228">Computational Thinking (CT)</text>
+          <text class="note" x="500" y="266" style="font-size:16px">decomposition · pattern recognition · abstraction · algorithms</text>
         </g>
 
-        <!-- Step 2: a person writes the rules -->
+        <!-- Step 2: a. classical CT, a person writes the rules -->
         <g data-step="2">
-          <text class="heading" x="32" y="32" style="fill:var(--d-purple-ink)">Pensamento computacional: uma pessoa escreve as regras</text>
-          <rect class="box teal" x="35" y="46" width="160" height="40" rx="8"/>
-          <text class="label teal" x="115" y="66">dados</text>
+          <text class="frame-title" x="28" y="32">a. Classical CT: uma pessoa escreve as regras</text>
+          <rect class="box teal" x="35" y="48" width="160" height="40" rx="8"/>
+          <text class="label teal" x="115" y="68">dados</text>
           <rect class="box amber" x="35" y="106" width="160" height="40" rx="20"/>
           <text class="label amber" x="115" y="126">regras</text>
-          <path class="arrow draw" d="M195 66 L253 86"/>
+          <path class="arrow draw" d="M195 68 L253 88"/>
           <path class="arrow draw" d="M195 126 L253 106"/>
           <rect class="box" x="255" y="56" width="170" height="80" rx="10"/>
           <text class="label big" x="340" y="96">programa</text>
@@ -52,85 +55,91 @@
 
         <!-- Step 3: where hand-written rules break down -->
         <g data-step="3">
-          <rect class="box amber" x="660" y="36" width="325" height="118" rx="10"/>
-          <text class="note left" x="678" y="66">Quais regras detectam uma rachadura</text>
-          <text class="note left" x="678" y="88">na foto de uma parede? Ou distinguem</text>
-          <text class="note left" x="678" y="110">um gato de um cachorro? São casos</text>
-          <text class="note left" x="678" y="132">demais para escrever à mão.</text>
+          <rect class="box amber" x="662" y="26" width="326" height="118" rx="10"/>
+          <text class="note left" x="680" y="56">Quais regras detectam uma rachadura</text>
+          <text class="note left" x="680" y="78">na foto de uma parede? Ou distinguem</text>
+          <text class="note left" x="680" y="100">um gato de um cachorro? São casos</text>
+          <text class="note left" x="680" y="122">demais para escrever à mão.</text>
         </g>
 
-        <!-- Step 4: training inputs -->
+        <!-- Step 4: b. intelligent CT, the computer learns the rules -->
         <g data-step="4">
-          <rect class="group" x="15" y="200" width="455" height="200" rx="12"/>
-          <text class="heading" x="25" y="190">Treinamento: aprende as regras a partir de exemplos</text>
-          <rect class="box teal" x="35" y="255" width="160" height="40" rx="8"/>
-          <text class="label teal small" x="115" y="275">dados de treino</text>
-          <rect class="box blue" x="35" y="325" width="160" height="40" rx="4"/>
-          <text class="label blue small" x="115" y="345">saída desejada</text>
-          <path class="arrow draw" d="M195 275 L253 295"/>
-          <path class="arrow draw" d="M195 345 L253 325"/>
-          <rect class="box" x="255" y="250" width="170" height="120" rx="10"/>
-          <text class="label big" x="340" y="310">Treinamento</text>
+          <rect class="intelligent" x="8" y="174" width="984" height="290" rx="14"/>
+          <text class="frame-title teal" x="24" y="198">b. Intelligent CT: o computador aprende as regras a partir de exemplos</text>
         </g>
+        <g transform="translate(0 40)">
+          <g data-step="4">
+            <rect class="group" x="15" y="200" width="455" height="200" rx="12"/>
+            <text class="heading" x="25" y="190">Training: aprende as regras</text>
+            <rect class="box teal" x="35" y="255" width="160" height="40" rx="8"/>
+            <text class="label teal small" x="115" y="275">training data</text>
+            <rect class="box blue" x="35" y="325" width="160" height="40" rx="4"/>
+            <text class="label blue small" x="115" y="345">saída desejada</text>
+            <path class="arrow draw" d="M195 275 L253 295"/>
+            <path class="arrow draw" d="M195 345 L253 325"/>
+            <rect class="box" x="255" y="250" width="170" height="120" rx="10"/>
+            <text class="label big" x="340" y="310">Training</text>
+          </g>
 
-        <!-- Step 5: learned rules = model weights -->
-        <g data-step="5">
-          <path class="arrow draw" d="M425 310 L508 322"/>
-          <rect class="box purple" x="510" y="300" width="140" height="44" rx="22"/>
-          <text class="label purple" x="580" y="322">regras</text>
-          <text class="label" x="580" y="366" style="font-size:15px">modelo de AM</text>
-          <text class="note" x="580" y="386">pesos <tspan font-weight="700">w</tspan></text>
-        </g>
+          <!-- Step 5: learned rules = model weights -->
+          <g data-step="5">
+            <path class="arrow draw" d="M425 310 L508 322"/>
+            <rect class="box purple" x="510" y="300" width="140" height="44" rx="22"/>
+            <text class="label purple" x="580" y="322">regras</text>
+            <text class="label" x="580" y="366" style="font-size:15px">modelo</text>
+            <text class="note" x="580" y="386">pesos <tspan font-weight="700">w</tspan></text>
+          </g>
 
-        <!-- Step 6: testing -->
-        <g data-step="6">
-          <rect class="group blue" x="490" y="200" width="495" height="200" rx="12"/>
-          <text class="heading blue" x="500" y="190">Teste: aplica as regras aprendidas</text>
-          <rect class="box teal" x="510" y="225" width="140" height="40" rx="8"/>
-          <text class="label teal small" x="580" y="245">dados de teste</text>
-          <path class="arrow draw" d="M650 245 L698 285"/>
-          <path class="arrow draw" d="M650 322 L698 315"/>
-          <rect class="box" x="700" y="250" width="135" height="120" rx="10"/>
-          <text class="label big" x="767" y="310">Teste</text>
-        </g>
+          <!-- Step 6: testing -->
+          <g data-step="6">
+            <rect class="group blue" x="490" y="200" width="495" height="200" rx="12"/>
+            <text class="heading blue" x="500" y="190">Testing: aplica as regras aprendidas</text>
+            <rect class="box teal" x="510" y="225" width="140" height="40" rx="8"/>
+            <text class="label teal small" x="580" y="245">test data</text>
+            <path class="arrow draw" d="M650 245 L698 285"/>
+            <path class="arrow draw" d="M650 322 L698 315"/>
+            <rect class="box" x="700" y="250" width="135" height="120" rx="10"/>
+            <text class="label big" x="767" y="310">Testing</text>
+          </g>
 
-        <!-- Step 7: output -->
-        <g data-step="7">
-          <path class="arrow draw" d="M835 310 L873 310"/>
-          <rect class="box blue" x="875" y="290" width="100" height="40" rx="4"/>
-          <text class="label blue" x="925" y="310">saída</text>
+          <!-- Step 7: output -->
+          <g data-step="7">
+            <path class="arrow draw" d="M835 310 L873 310"/>
+            <rect class="box blue" x="875" y="290" width="100" height="40" rx="4"/>
+            <text class="label blue" x="925" y="310">saída</text>
+          </g>
         </g>
       </svg>
     </div>
 
     <ol class="st-steps">
       <li>
-        <h3>Pensamento computacional</h3>
-        <p>Resolver problemas como um cientista da computação: decompor o problema, reconhecer padrões, abstrair e escrever um algoritmo.</p>
+        <h3>Computational Thinking</h3>
+        <p>Resolver problemas como um cientista da computação: <em>decomposition</em>, <em>pattern recognition</em>, <em>abstraction</em> e <em>algorithms</em>.</p>
       </li>
       <li>
-        <h3>Programação tradicional</h3>
-        <p>Uma pessoa escreve as regras. O computador as aplica aos dados e devolve uma saída.</p>
+        <h3>a. Classical CT</h3>
+        <p>Uma pessoa decompõe o problema e escreve as regras (o algoritmo). O computador as aplica aos dados e devolve uma saída.</p>
       </li>
       <li>
-        <h3>Onde isso falha</h3>
+        <h3>Onde o clássico falha</h3>
         <p>Para imagens, sons ou textos, ninguém consegue escrever as regras explicitamente.</p>
       </li>
       <li>
-        <h3>Aprender com exemplos</h3>
-        <p>O aprendizado de máquina inverte a lógica: fornecemos os dados <em>e</em> as saídas que desejamos.</p>
+        <h3>b. Intelligent CT</h3>
+        <p>Invertemos a lógica: fornecemos os dados <em>e</em> as saídas desejadas (<em>training data</em>), e o computador aprende as regras.</p>
       </li>
       <li>
         <h3>As regras são aprendidas</h3>
-        <p>O treinamento encontra pesos <strong>w</strong> que levam as entradas às saídas. Esses pesos são o modelo.</p>
+        <p>O <em>training</em> encontra os pesos <strong>w</strong> do modelo. Esses pesos são as regras aprendidas.</p>
       </li>
       <li>
-        <h3>Aplicar a novos dados</h3>
-        <p>Dados de teste, nunca vistos, entram junto com as regras aprendidas.</p>
+        <h3>Aplicar a dados novos</h3>
+        <p>No <em>testing</em>, dados nunca vistos (<em>test data</em>) entram junto com as regras aprendidas.</p>
       </li>
       <li>
         <h3>O quadro completo</h3>
-        <p>Depois de treinado, o modelo funciona como um programa comum: dados + regras aprendidas geram a saída.</p>
+        <p>No <em>classical CT</em> escrevemos as regras; no <em>intelligent CT</em> elas são aprendidas dos dados e depois usadas como um programa comum.</p>
       </li>
     </ol>
   </div>

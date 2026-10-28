@@ -40,6 +40,12 @@
     .btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
     .btn.primary:hover { background: #214779; }
     .chapter.soon { opacity: 0.6; }
+    .resources { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-bottom: 64px; }
+    .resource { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; text-decoration: none; transition: border-color .15s; }
+    .resource:hover { border-color: var(--accent); }
+    .resource .kind { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+    .resource h3 { margin: 6px 0 2px; font-size: 17px; letter-spacing: -0.01em; }
+    .resource p { margin: 0; color: var(--muted); font-size: 14px; }
     .tag { font-size: 12px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 4px 10px; border-radius: 20px; }
     a:focus-visible { outline: 3px solid #8f78cf; outline-offset: 3px; }
     footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
@@ -48,6 +54,7 @@
       .hero { padding: 44px 0 36px; }
       .chapter { grid-template-columns: 40px 1fr; padding: 16px; }
       .links { grid-column: 1 / -1; }
+      .resources { grid-template-columns: 1fr; }
       .links .btn { flex: 1; justify-content: center; }
     }
   </style>
@@ -58,6 +65,7 @@
       <a class="brand" href="./"><span class="mark">MI</span> Machine Intelligence</a>
       <nav>
         <a href="#chapters">Capítulos</a>
+        <a href="#resources">Recursos</a>
         <a href="#about">Sobre</a>
       </nav>
     </div>
@@ -77,8 +85,8 @@
         <article class="chapter">
           <div class="num">01</div>
           <div>
-            <h3>Aprendizado Estatístico</h3>
-            <p>Estimar f, flexibilidade versus interpretabilidade, viés e variância.</p>
+            <h3>Statistical Learning</h3>
+            <p>Computational thinking, estimar f, overfitting, bias-variance trade-off, KNN e cross-validation.</p>
           </div>
           <div class="links">
             <a class="btn" href="ch1/chapter-01-statistical-learning/lecture.html">Notas de aula</a>
@@ -94,6 +102,32 @@
           </div>
           <div class="links"><span class="tag">Em breve</span></div>
         </article>
+      </div>
+    </section>
+
+    <section id="resources">
+      <h2>Recursos online</h2>
+      <div class="resources">
+        <a class="resource" href="https://www.deeplearningbook.org/">
+          <div class="kind">Livro · gratuito online</div>
+          <h3>Deep Learning</h3>
+          <p>Goodfellow, Bengio &amp; Courville (MIT Press, 2016).</p>
+        </a>
+        <a class="resource" href="https://www.statlearning.com/">
+          <div class="kind">Livro · PDF gratuito</div>
+          <h3>An Introduction to Statistical Learning</h3>
+          <p>James, Witten, Hastie, Tibshirani &amp; Taylor. Versões em R (ISLR) e em Python (ISLP).</p>
+        </a>
+        <a class="resource" href="https://themlbook.com/">
+          <div class="kind">Livro</div>
+          <h3>The Hundred-Page Machine Learning Book</h3>
+          <p>Andriy Burkov. Uma visão geral concisa de machine learning.</p>
+        </a>
+        <a class="resource" href="https://www.youtube.com/playlist?list=PLo4jXE-LdDTRLGDL59SkkLPBHVmYphuqI">
+          <div class="kind">Vídeos · em português</div>
+          <h3>Programa de Mestrado: Machine Learning (2026)</h3>
+          <p>IMPA. Playlist de aulas no YouTube.</p>
+        </a>
       </div>
     </section>
   </main>
