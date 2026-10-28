@@ -231,16 +231,18 @@ demais pode seguir o ruído dos dados de treino, o que chamamos de
   - *Classification*: $\mathcal Y = \{0, 1\}$ e $L(y, \hat y) = \mathbb I[y \neq \hat y]$
 - Objetivo: minimizar o *risk* $\;\mathbb E\big[L\big(y, f(\mathbf x; \mathbf w)\big)\big]$, com $f$ numa classe $\mathcal F$ que precisa ser escolhida
 - Na prática, minimizamos o *empirical risk* (trocamos o valor esperado pela média):
-:::
 
 $$
 \hat{\mathbf w} = {\color{#1f4fa0}{\arg\min_{\mathbf w}}} \; {\color{#c62828}{\frac{1}{n} \sum_{i=1}^{n} L\big(y_i, f(\mathbf x_i; \mathbf w)\big)}}, \qquad f(\,\cdot\,; \mathbf w) \in {\color{#2e7d32}{\mathcal F}}
 $$
 
-::: {.smaller-text}
 Três componentes básicos: (i) [*model class* $\mathcal F$]{style="color:#2e7d32"}; (ii) [*loss function* $L$]{style="color:#c62828"}; (iii) [*optimizer*]{style="color:#1f4fa0"}.
 
 *Test error*: com um *test set* $\text{Te}$ de $n_{\text{te}}$ pontos novos, $\;\frac{1}{n_{\text{te}}} \sum_{i \in \text{Te}} L\big(y_i, f(\mathbf x_i; \hat{\mathbf w})\big)$.
+:::
+
+::: aside
+Adaptado de: Prof. Paulo Orenstein (IMPA).
 :::
 
 ### 1.2.4 *Prediction accuracy* versus *model interpretability*
