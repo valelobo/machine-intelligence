@@ -28,7 +28,7 @@ format:
 
 ## 1.1 *Machine learning* em contexto
 
-Antes das equações: de onde vem o *machine learning*, onde ele se encaixa e o
+Antes das equações: de onde vem o *machine learning*, que perfis profissionais ele envolve e o
 que significa dizer que um programa **aprende**.
 
 ### 1.1.1 *Classical* versus *intelligent computational thinking*
@@ -52,20 +52,21 @@ modelo. Depois de treinado, o modelo é usado como um programa comum.
 Pergunte à turma por uma tarefa em que seria impossível escrever as regras à mão.
 :::
 
-### 1.1.2 Onde o *machine learning* se encaixa
+### 1.1.2 Competências e perfis profissionais
 
 ```{=html}
 <iframe src="animations/ml-in-context.html"
-        title="Machine learning em contexto"
+        title="Competências e perfis profissionais"
         width="100%" height="600" loading="lazy" allowfullscreen></iframe>
 ```
 
 ::: {.content-visible unless-format="revealjs"}
-O *machine learning* é um subconjunto da *artificial intelligence* e vive no
-encontro entre ciência da computação, estatística e o domínio de aplicação.
-A segunda aba mostra o mesmo raciocínio do ponto de vista das competências
-profissionais: quem combina programação, matemática/estatística e conhecimento
-do domínio está no centro, como cientista de dados ou de ML.
+Três competências se sobrepõem: programação, matemática/estatística e
+conhecimento do domínio de aplicação. Cada sobreposição corresponde a um
+perfil profissional: programação com matemática/estatística é o território do
+cientista de dados ou de ML; programação com domínio, o da engenharia de
+software; matemática/estatística com domínio, o do cientista tradicional. No
+centro, onde as três se encontram, está o pesquisador de IA.
 :::
 
 ### 1.1.3 O que é aprender? *Task*, *performance* e *experience*
