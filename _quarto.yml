@@ -39,6 +39,9 @@ format:
     # Lists appear one item at a time; the newest item is highlighted
     # (styles/slides.scss). Opt out with ::: {.nonincremental}.
     incremental: true
+    # Anything after a revealed list (tables, text, formulas) appears after it.
+    filters:
+      - _filters/sequential-reveal.lua
     slide-number: c/t
     hash-type: title
     width: 1280

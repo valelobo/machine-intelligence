@@ -71,6 +71,10 @@ Writing tips:
 - Lists on slides appear one item at a time, and the newest item is
   highlighted in purple. Wrap a list in `::: {.nonincremental}` to show it all
   at once. `[texto]{.alert}` highlights words in red.
+- Anything after a revealed list (tables, text, formulas) appears after the
+  list, step by step (`_filters/sequential-reveal.lua`). Figures and
+  animations stay visible. Use `::: {.static}` to keep a block visible, and
+  `::: {.incremental-rows}` around a table to reveal it row by row.
 - Don't put an HTML comment (`<!-- -->`) in the chapter body: reveal.js turns
   it into an empty slide. Use `#` comments in the front matter instead.
 - `::: {.column .smaller-text}` shrinks text in a crowded column.

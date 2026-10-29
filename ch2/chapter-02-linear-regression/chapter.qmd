@@ -373,7 +373,7 @@ Dados simulados, inspirados no conjunto *Auto* do ISLP, §3.3.2.
 
 ## 2.4 O plano de marketing
 
-::: {.smallest-text}
+::: {.smallest-text .incremental-rows}
 {{< include _tables/marketing.md >}}
 
 [ISLP, §3.4. Números calculados com os dados simulados deste capítulo.]{style="color:#5c6577"}

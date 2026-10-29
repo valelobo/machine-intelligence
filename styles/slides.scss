@@ -90,3 +90,13 @@ $code-color: #5b3fa0;
 .reveal .smallest-text {
   font-size: 0.66em;
 }
+
+// Tables revealed row by row (::: {.incremental-rows}): same highlight.
+.reveal .slides tr.fragment {
+  transition: opacity 0.35s ease, color 0.35s ease, background-color 0.35s ease;
+}
+
+.reveal .slides tr.fragment.current-fragment {
+  color: #5b3fa0;
+  background: rgba(91, 63, 160, 0.10);
+}
