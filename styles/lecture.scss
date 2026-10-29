@@ -57,3 +57,9 @@ iframe {
   display: block;
   margin: 1.5rem 0;
 }
+
+// Inline emphasis, like Beamer's \alert: [texto]{.alert}
+.alert {
+  color: #c62828;
+  font-weight: 600;
+}

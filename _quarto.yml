@@ -36,6 +36,9 @@ format:
     theme: [default, styles/slides.scss]
     # "## 1.1" = section slide, "### 1.1.1" = one content slide.
     slide-level: 3
+    # Lists appear one item at a time; the newest item is highlighted
+    # (styles/slides.scss). Opt out with ::: {.nonincremental}.
+    incremental: true
     slide-number: c/t
     hash-type: title
     width: 1280

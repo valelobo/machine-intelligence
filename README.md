@@ -63,6 +63,9 @@ Writing tips:
   prediction *ŷ*, weights **w** (`w_0` = intercept). Keep it consistent.
 - Key concepts are written in English (in italics); the text is in Portuguese.
 - `::: aside` puts a source line at the bottom of a slide.
+- Lists on slides appear one item at a time, and the newest item is
+  highlighted in purple. Wrap a list in `::: {.nonincremental}` to show it all
+  at once. `[texto]{.alert}` highlights words in red.
 - Don't put an HTML comment (`<!-- -->`) in the chapter body: reveal.js turns
   it into an empty slide. Use `#` comments in the front matter instead.
 - `::: {.column .smaller-text}` shrinks text in a crowded column.

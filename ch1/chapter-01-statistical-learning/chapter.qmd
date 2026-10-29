@@ -106,7 +106,7 @@ $E$, em relação a uma classe de tarefas $T$ e a uma medida de desempenho $P$,
 se o seu desempenho nas tarefas de $T$, medido por $P$, melhora com a
 experiência $E$. O tipo de experiência define grandes famílias de algoritmos:
 em *supervised learning* cada exemplo traz a resposta desejada; em
-*unsupervised learning*, não (veja a Seção 1.2.5).
+*unsupervised learning*, não (veja a Seção 1.2.6).
 :::
 
 ## 1.2 O que é *statistical learning*?
@@ -120,7 +120,59 @@ $$
 $f$ é fixa, mas desconhecida; $\varepsilon$ é um erro aleatório com média zero, independente de $\mathbf x$.
 **_Statistical learning_ é um conjunto de abordagens para estimar $f$.**
 
-### 1.2.1 Um exemplo: renda e anos de estudo
+### 1.2.1 Os dados: a matriz $\mathbf X$ e o vetor $\mathbf y$
+
+```{=html}
+<iframe src="animations/dataset.html"
+        title="Anatomia de um dataset"
+        width="100%" height="590" loading="lazy" allowfullscreen></iframe>
+```
+
+::: {.content-visible unless-format="revealjs"}
+Um *dataset* é uma tabela. Cada **linha** é uma observação (aqui, uma pessoa)
+e cada **coluna** é uma *feature* (uma variável de entrada), mais a coluna da
+resposta $y$ que queremos prever. As colunas de *features* formam a matriz
+$\mathbf X$, com $n$ linhas e $p$ colunas; as respostas formam o vetor
+$\mathbf y$, com $n$ entradas. Uma observação nova, que não está nos dados,
+é escrita $\mathbf x_0$: conhecemos suas *features*, mas não sua resposta.
+:::
+
+### Notação: $\mathbf X$, $\mathbf y$ e $\mathbf x_i$ {.unlisted}
+
+$$
+\mathbf X =
+\begin{pmatrix}
+x_{11} & x_{12} & \cdots & x_{1p}\\
+x_{21} & x_{22} & \cdots & x_{2p}\\
+\vdots & \vdots & \ddots & \vdots\\
+x_{n1} & x_{n2} & \cdots & x_{np}
+\end{pmatrix}
+=
+\begin{pmatrix} \mathbf x_1^\top \\ \mathbf x_2^\top \\ \vdots \\ \mathbf x_n^\top \end{pmatrix}
+\in \mathbb R^{n \times p},
+\qquad
+\mathbf y = \begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{pmatrix} \in \mathbb R^{n}
+$$
+
+- $n$: número de observações (linhas); $p$: número de *features* (colunas).
+- $\mathbf x_i = (x_{i1}, \dots, x_{ip})^\top$: as *features* da observação $i$, ou seja, a linha $i$ de $\mathbf X$ escrita como vetor coluna.
+- $x_{ij}$: o valor da *feature* $j$ na observação $i$ (primeiro índice: linha; segundo: coluna).
+- $\mathbf x_0$: um ponto novo, fora do *training data*, cuja resposta $y_0$ queremos prever.
+
+### Conectando com o resto do capítulo {.unlisted}
+
+- O *training data* é o par $(\mathbf X, \mathbf y)$: $\;\{(\mathbf x_i, y_i)\}_{i=1}^{n}$.
+- O modelo $y = f(\mathbf x) + \varepsilon$ vale para **cada linha**: $\;y_i = f(\mathbf x_i) + \varepsilon_i$.
+- Um modelo linear com pesos $\mathbf w = (w_1, \dots, w_p)^\top$ e intercepto $w_0$:
+  $$
+  \hat y_i = w_0 + \mathbf x_i^\top \mathbf w = w_0 + w_1 x_{i1} + \dots + w_p x_{ip}
+  \quad\Longleftrightarrow\quad
+  \hat{\mathbf y} = w_0 \mathbf 1 + \mathbf X \mathbf w
+  $$
+- O *training MSE* compara $\mathbf y$ com $\hat{\mathbf y}$: $\;\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat y_i)^2 = \frac{1}{n} \lVert \mathbf y - \hat{\mathbf y} \rVert^2$.
+- No exemplo a seguir, $p = 1$ (só anos de estudo) e $n = 30$: $\mathbf X$ é uma matriz $30 \times 1$.
+
+### 1.2.2 Um exemplo: renda e anos de estudo
 
 :::: {.columns}
 
@@ -141,7 +193,7 @@ $f$ é fixa, mas desconhecida; $\varepsilon$ é um erro aleatório com média ze
 Dados simulados, inspirados no conjunto *Income* do ISLP, cap. 2.
 :::
 
-### 1.2.2 Por que estimar *f*?
+### 1.2.3 Por que estimar *f*?
 
 :::: {.columns}
 
@@ -193,7 +245,7 @@ acurácia de qualquer predição e, na prática, quase sempre é desconhecida.
 James, Witten, Hastie, Tibshirani & Taylor, *An Introduction to Statistical Learning with Applications in Python* (ISLP), §2.1.1.
 :::
 
-### 1.2.3 Como estimamos *f*?
+### 1.2.4 Como estimamos *f*?
 
 Com o *training data* $\{(\mathbf x_i, y_i)\}_{i=1}^{n}$, encontrar $\hat f$ com $y \approx \hat f(\mathbf x)$.
 
@@ -233,20 +285,27 @@ demais pode seguir o ruído dos dados de treino, o que chamamos de
 - Objetivo: minimizar o *risk* $\;\mathbb E\big[L\big(y, f(\mathbf x; \mathbf w)\big)\big]$, com $f$ numa classe $\mathcal F$ que precisa ser escolhida
 - Na prática, minimizamos o *empirical risk* (trocamos o valor esperado pela média):
 
+::: {.fragment}
 $$
 \hat{\mathbf w} = {\color{#1f4fa0}{\arg\min_{\mathbf w}}} \; {\color{#c62828}{\frac{1}{n} \sum_{i=1}^{n} L\big(y_i, f(\mathbf x_i; \mathbf w)\big)}}, \qquad f(\,\cdot\,; \mathbf w) \in {\color{#2e7d32}{\mathcal F}}
 $$
+:::
 
+::: {.fragment}
 Três componentes básicos: (i) [*model class* $\mathcal F$]{style="color:#2e7d32"}; (ii) [*loss function* $L$]{style="color:#c62828"}; (iii) [*optimizer*]{style="color:#1f4fa0"}.
 
+:::
+
+::: {.fragment}
 *Test error*: com um *test set* $\text{Te}$ de $n_{\text{te}}$ pontos novos, $\;\frac{1}{n_{\text{te}}} \sum_{i \in \text{Te}} L\big(y_i, f(\mathbf x_i; \hat{\mathbf w})\big)$.
+:::
 :::
 
 ::: aside
 Adaptado de: Prof. Paulo Orenstein (IMPA).
 :::
 
-### 1.2.4 *Prediction accuracy* versus *model interpretability*
+### 1.2.5 *Prediction accuracy* versus *model interpretability*
 
 :::: {.columns}
 
@@ -272,7 +331,7 @@ cada entrada deixa de ser visível. Contra a intuição, mesmo quando só a
 dados novos, porque o flexível está mais sujeito ao *overfitting*.
 :::
 
-### 1.2.5 *Supervised* versus *unsupervised learning*
+### 1.2.6 *Supervised* versus *unsupervised learning*
 
 ![](figures/supervised-unsupervised.svg){fig-alt="À esquerda, pontos coloridos pela classe conhecida. À direita, os mesmos pontos em cinza, com contornos tracejados em torno de três grupos descobertos." width="72%" fig-align="center" .nostretch}
 
@@ -298,7 +357,7 @@ Quando apenas $m < n$ observações têm resposta (porque medi-la é caro), temo
 um problema de *semi-supervised learning*.
 :::
 
-### 1.2.6 *Regression* versus *classification*
+### 1.2.7 *Regression* versus *classification*
 
 | A resposta $y$ é… | Exemplos | Problema |
 |---|---|---|
@@ -373,7 +432,7 @@ mas o *test MSE* primeiro cai e depois sobe, formando um U. Quando um método
 tem *training MSE* pequeno e *test MSE* grande, ele está sofrendo
 *overfitting*: captou padrões causados pelo acaso, e não pela verdadeira $f$.
 O *test MSE* nunca fica abaixo de $\operatorname{Var}(\varepsilon)$, a linha
-tracejada. A animação usa os mesmos dados de renda da Seção 1.2.1, ajustados
+tracejada. A animação usa os mesmos dados de renda da Seção 1.2.2, ajustados
 por uma reta e por *smoothing splines* de flexibilidade crescente.
 :::
 
@@ -491,7 +550,9 @@ Como não conhecemos $\Pr(y = j \mid \mathbf x)$, o KNN a **estima**:
 
 ![](figures/knn-k.svg){fig-alt="Regiões de decisão do KNN com K igual a 1, muito irregulares, e com K igual a 50, suaves, comparadas à Bayes decision boundary." width="66%" fig-align="center" .nostretch}
 
+::: {.nonincremental}
 - $K$ **controla a flexibilidade**: $K = 1$ segue cada ponto (*low bias*, *high variance*); $K = 50$ é quase linear (*high bias*, *low variance*).
+:::
 
 ### *Training* versus *test error* no KNN {.unlisted}
 

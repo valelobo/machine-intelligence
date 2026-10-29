@@ -62,3 +62,26 @@ $code-color: #5b3fa0;
 .reveal .smaller-text {
   font-size: 0.82em;
 }
+
+// Incremental lists: the item just revealed is highlighted (colour + soft
+// band); earlier items return to the normal text colour.
+.reveal .slides li.fragment {
+  transition: opacity 0.35s ease, color 0.35s ease, background-color 0.35s ease;
+  border-radius: 6px;
+}
+
+.reveal .slides li.fragment.current-fragment {
+  color: #5b3fa0;
+  background: linear-gradient(90deg, rgba(91, 63, 160, 0.12), rgba(91, 63, 160, 0) 85%);
+}
+
+.reveal .slides li.fragment.current-fragment::marker {
+  color: #5b3fa0;
+  font-weight: 700;
+}
+
+// Inline emphasis, like Beamer's \alert: [texto]{.alert}
+.reveal .alert {
+  color: #c62828;
+  font-weight: 600;
+}

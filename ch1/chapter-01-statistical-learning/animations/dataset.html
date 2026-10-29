@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anatomia de um dataset</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../../../assets/stepper/stepper.css">
+  <style>
+    /* Table: index column at x 40-90, features x1..x3 at 90-450 (120 each),
+       y at 470-590. Header 40-100, rows of 44 px from y = 100. */
+    .cell { fill: #fff; stroke: #d3d8e1; stroke-width: 1; }
+    .head { fill: #f3f5f8; stroke: #d3d8e1; stroke-width: 1; }
+    .v { font: 500 16px "Inter", system-ui, sans-serif; text-anchor: middle; dominant-baseline: central; fill: var(--d-ink); }
+    .idx { font: 600 14px "Inter", system-ui, sans-serif; text-anchor: middle; dominant-baseline: central; fill: var(--d-muted); }
+    .hn { font: 600 13px "Inter", system-ui, sans-serif; text-anchor: middle; fill: var(--d-muted); }
+    .hs { font: 700 15px "Inter", system-ui, sans-serif; text-anchor: middle; fill: var(--d-ink); }
+    .hl-row { fill: var(--d-amber-fill); fill-opacity: 0.55; stroke: var(--d-amber-stroke); stroke-width: 3; }
+    .hl-col { fill: var(--d-blue-fill); fill-opacity: 0.5; stroke: var(--d-blue-stroke); stroke-width: 3; }
+    .hl-X { fill: var(--d-teal-fill); fill-opacity: 0.45; stroke: var(--d-teal-stroke); stroke-width: 3; }
+    .hl-y { fill: var(--d-purple-fill); fill-opacity: 0.55; stroke: var(--d-purple-stroke); stroke-width: 3; }
+    .hl-cell { fill: none; stroke: #b4495a; stroke-width: 3.5; }
+    .hl-new { fill: #fff8ec; stroke: var(--d-amber-stroke); stroke-width: 2; stroke-dasharray: 6 5; }
+    .ann { font: 600 17px "Inter", system-ui, sans-serif; }
+    .ann.sm { font-size: 15px; font-weight: 500; fill: var(--d-muted); }
+    .amber { fill: var(--d-amber-ink); }
+    .blue { fill: var(--d-blue-ink); }
+    .teal { fill: var(--d-teal-ink); }
+    .purple { fill: var(--d-purple-ink); }
+    .red { fill: #b4495a; }
+    .b { font-weight: 800; }
+  </style>
+</head>
+<body>
+  <div class="stepper" data-interval="3200">
+    <div class="st-stage">
+      <svg viewBox="0 0 1000 440" role="img" aria-label="Um dataset de 5 pessoas com 3 features (anos de estudo, experiência e idade) e a resposta renda. As features formam a matriz X, de 5 por 3, e a renda forma o vetor y. Uma nova pessoa x0 tem renda desconhecida.">
+
+        <!-- Highlights sit under the table text -->
+        <g data-step="2" data-until="2"><rect class="hl-row" x="40" y="144" width="550" height="44" rx="6"/></g>
+        <g data-step="3" data-until="3"><rect class="hl-col" x="90" y="100" width="120" height="220" rx="6"/></g>
+        <g data-step="4"><rect class="hl-X" x="90" y="100" width="360" height="220" rx="6"/></g>
+        <g data-step="5"><rect class="hl-y" x="470" y="100" width="120" height="220" rx="6"/></g>
+        <g data-step="7"><rect class="hl-new" x="40" y="340" width="550" height="44" rx="6"/></g>
+
+        <!-- Step 1: the table -->
+        <g data-step="1">
+          <rect class="head" x="40" y="40" width="50" height="60"/>
+          <text class="hs" x="65" y="76">i</text>
+          <rect class="head" x="90" y="40" width="120" height="60"/>
+          <text class="hn" x="150" y="64">Anos de estudo</text><text class="hs" x="150" y="86">x₁</text>
+          <rect class="head" x="210" y="40" width="120" height="60"/>
+          <text class="hn" x="270" y="64">Experiência</text><text class="hs" x="270" y="86">x₂</text>
+          <rect class="head" x="330" y="40" width="120" height="60"/>
+          <text class="hn" x="390" y="64">Idade</text><text class="hs" x="390" y="86">x₃</text>
+          <rect class="head" x="470" y="40" width="120" height="60"/>
+          <text class="hn" x="530" y="64">Renda (mil R$)</text><text class="hs" x="530" y="86">y</text>
+
+          <g>
+            <rect class="cell" x="40" y="100" width="50" height="220" fill-opacity="0"/>
+            <rect class="cell" x="90" y="100" width="360" height="220" fill-opacity="0"/>
+            <rect class="cell" x="470" y="100" width="120" height="220" fill-opacity="0"/>
+            <path d="M40 144 H450 M40 188 H450 M40 232 H450 M40 276 H450 M470 144 H590 M470 188 H590 M470 232 H590 M470 276 H590 M210 100 V320 M330 100 V320" stroke="#d3d8e1" fill="none"/>
+          </g>
+          <text class="idx" x="65" y="122">1</text><text class="v" x="150" y="122">16</text><text class="v" x="270" y="122">5</text><text class="v" x="390" y="122">30</text><text class="v" x="530" y="122">58</text>
+          <text class="idx" x="65" y="166">2</text><text class="v" x="150" y="166">12</text><text class="v" x="270" y="166">10</text><text class="v" x="390" y="166">34</text><text class="v" x="530" y="166">41</text>
+          <text class="idx" x="65" y="210">3</text><text class="v" x="150" y="210">18</text><text class="v" x="270" y="210">2</text><text class="v" x="390" y="210">26</text><text class="v" x="530" y="210">62</text>
+          <text class="idx" x="65" y="254">4</text><text class="v" x="150" y="254">11</text><text class="v" x="270" y="254">20</text><text class="v" x="390" y="254">45</text><text class="v" x="530" y="254">39</text>
+          <text class="idx" x="65" y="298">5</text><text class="v" x="150" y="298">20</text><text class="v" x="270" y="298">8</text><text class="v" x="390" y="298">35</text><text class="v" x="530" y="298">80</text>
+        </g>
+
+        <!-- Step 2: a row is one observation -->
+        <g data-step="2" data-until="2">
+          <text class="ann amber" x="630" y="150">Linha i = 2: uma observação</text>
+          <text class="ann amber" x="630" y="182"><tspan class="b">x</tspan>₂ = (12, 10, 34)ᵀ,  y₂ = 41</text>
+        </g>
+
+        <!-- Step 3: a column is one feature -->
+        <g data-step="3" data-until="3">
+          <text class="ann blue" x="630" y="150">Coluna j = 1: uma <tspan font-style="italic">feature</tspan></text>
+          <text class="ann blue" x="630" y="182">x₁ = anos de estudo, para todas</text>
+          <text class="ann blue" x="630" y="206">as n pessoas</text>
+        </g>
+
+        <!-- Step 4: the matrix X -->
+        <g data-step="4">
+          <text class="ann teal" x="630" y="132">Matriz <tspan class="b">X</tspan> ∈ ℝⁿˣᵖ  (n × p = 5 × 3)</text>
+          <text class="ann sm" x="630" y="158">linhas = observações, colunas = <tspan font-style="italic">features</tspan></text>
+        </g>
+
+        <!-- Step 5: the vector y -->
+        <g data-step="5">
+          <text class="ann purple" x="630" y="206">Vetor <tspan class="b">y</tspan> ∈ ℝⁿ  (n = 5)</text>
+          <text class="ann sm" x="630" y="232">a resposta de cada observação</text>
+        </g>
+
+        <!-- Step 6: one entry -->
+        <g data-step="6">
+          <rect class="hl-cell" x="90" y="144" width="120" height="44" rx="4"/>
+          <text class="ann red" x="630" y="280">Entrada x₂₁ = 12</text>
+          <text class="ann sm" x="630" y="306">observação i = 2, <tspan font-style="italic">feature</tspan> j = 1</text>
+        </g>
+
+        <!-- Step 7: a new observation -->
+        <g data-step="7">
+          <text class="idx" x="65" y="362" style="fill:var(--d-amber-ink)">0</text>
+          <text class="v" x="150" y="362">14</text><text class="v" x="270" y="362">6</text><text class="v" x="390" y="362">29</text>
+          <text class="v" x="530" y="362" style="fill:var(--d-amber-ink);font-weight:700">ŷ₀ = ?</text>
+          <text class="ann amber" x="630" y="356">Nova pessoa <tspan class="b">x</tspan>₀: y₀ desconhecido</text>
+          <text class="ann amber" x="630" y="382">→ o modelo prevê ŷ₀</text>
+        </g>
+
+        <!-- Step 8: the notation used from now on -->
+        <g data-step="8">
+          <rect x="40" y="398" width="945" height="36" rx="8" fill="var(--d-purple-fill)" stroke="var(--d-purple-stroke)" stroke-width="1.5"/>
+          <text class="ann purple" x="512" y="422" text-anchor="middle"><tspan font-style="italic">Training data</tspan> = {(<tspan class="b">x</tspan>ᵢ, yᵢ)}ᵢ₌₁ⁿ = (<tspan class="b">X</tspan>, <tspan class="b">y</tspan>):  o modelo aprende com ele e é usado em novos <tspan class="b">x</tspan>₀</text>
+        </g>
+      </svg>
+    </div>
+
+    <ol class="st-steps">
+      <li><h3>Um <em>dataset</em> é uma tabela</h3><p>5 pessoas, 3 informações sobre cada uma e a renda que queremos prever.</p></li>
+      <li><h3>Linha = observação</h3><p>Cada linha i é uma observação: o vetor de <em>features</em> <strong>x</strong>ᵢ e sua resposta yᵢ.</p></li>
+      <li><h3>Coluna = <em>feature</em></h3><p>Cada coluna j é uma variável de entrada x<sub>j</sub>, medida em todas as n observações.</p></li>
+      <li><h3>A matriz <strong>X</strong></h3><p>Juntando as <em>features</em> de todas as observações: uma matriz com n linhas e p colunas.</p></li>
+      <li><h3>O vetor <strong>y</strong></h3><p>As respostas formam um vetor com n entradas, uma por linha de <strong>X</strong>.</p></li>
+      <li><h3>Uma entrada x<sub>ij</sub></h3><p>O valor da <em>feature</em> j na observação i. Primeiro índice: linha; segundo: coluna.</p></li>
+      <li><h3>Um ponto novo</h3><p>Uma pessoa que não está nos dados: conhecemos <strong>x</strong>₀, mas não y₀. É isso que o modelo deve prever.</p></li>
+      <li><h3>A notação daqui em diante</h3><p>O <em>training data</em> é o par (<strong>X</strong>, <strong>y</strong>). O modelo aprende com ele e é usado em pontos novos.</p></li>
+    </ol>
+  </div>
+  <script src="../../../assets/stepper/stepper.js"></script>
+</body>
+</html>
