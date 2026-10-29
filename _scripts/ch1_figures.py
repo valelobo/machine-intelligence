@@ -30,10 +30,6 @@ from figlib import *  # noqa: E402,F403  palette, svg(), text(), Axes
 
 # ------------------------------------------------- income vs years of education
 
-def income_f(x):
-    return 20 + 55 / (1 + np.exp(-(x - 16.5) / 1.3))
-
-
 SIGMA = 6.0
 XLIM_EDU = (10, 22)
 

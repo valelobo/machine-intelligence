@@ -1,59 +1,55 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
 <rect width="900" height="380" fill="#ffffff"/>
-<text x="70.0" y="24.0" font-size="16" fill="#1b2333" text-anchor="start" font-weight="700" >f linear</text>
-<path d="M70 40 V290 H430" fill="none" stroke="#6b7487" stroke-width="1.5"/>
-<text x="250.0" y="326.0" font-size="15" fill="#5c6577" text-anchor="middle" font-weight="600" >1/K  (flexibilidade →)</text>
-<text transform="translate(26 165.0) rotate(-90)" text-anchor="middle" font-size="15" font-weight="600" fill="#5c6577">Test MSE</text>
-<line x1="70.0" y1="290" x2="70.0" y2="295" stroke="#6b7487"/>
-<text x="70.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.02</text>
-<line x1="154.3" y1="290" x2="154.3" y2="295" stroke="#6b7487"/>
-<text x="154.3" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.05</text>
-<line x1="218.1" y1="290" x2="218.1" y2="295" stroke="#6b7487"/>
-<text x="218.1" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.1</text>
-<line x1="281.9" y1="290" x2="281.9" y2="295" stroke="#6b7487"/>
-<text x="281.9" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.2</text>
-<line x1="366.2" y1="290" x2="366.2" y2="295" stroke="#6b7487"/>
-<text x="366.2" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.5</text>
+<text x="80.0" y="24.0" font-size="16" fill="#1b2333" text-anchor="start" font-weight="700" >Se a renda fosse linear no estudo</text>
+<path d="M80 40 V290 H430" fill="none" stroke="#6b7487" stroke-width="1.5"/>
+<text x="255.0" y="326.0" font-size="15" fill="#5c6577" text-anchor="middle" font-weight="600" >1/K  (flexibilidade →)</text>
+<text transform="translate(36 165.0) rotate(-90)" text-anchor="middle" font-size="15" font-weight="600" fill="#5c6577">Test MSE</text>
+<line x1="80.0" y1="290" x2="80.0" y2="295" stroke="#6b7487"/>
+<text x="80.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.02</text>
+<line x1="162.0" y1="290" x2="162.0" y2="295" stroke="#6b7487"/>
+<text x="162.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.05</text>
+<line x1="224.0" y1="290" x2="224.0" y2="295" stroke="#6b7487"/>
+<text x="224.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.1</text>
+<line x1="286.0" y1="290" x2="286.0" y2="295" stroke="#6b7487"/>
+<text x="286.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.2</text>
+<line x1="368.0" y1="290" x2="368.0" y2="295" stroke="#6b7487"/>
+<text x="368.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.5</text>
 <line x1="430.0" y1="290" x2="430.0" y2="295" stroke="#6b7487"/>
 <text x="430.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >1</text>
-<line x1="65" y1="290.0" x2="70" y2="290.0" stroke="#6b7487"/>
-<text x="61.0" y="294.0" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >0</text>
-<line x1="65" y1="223.6" x2="70" y2="223.6" stroke="#6b7487"/>
-<text x="61.0" y="227.6" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >0.5</text>
-<line x1="65" y1="157.2" x2="70" y2="157.2" stroke="#6b7487"/>
-<text x="61.0" y="161.2" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >1</text>
-<line x1="65" y1="90.8" x2="70" y2="90.8" stroke="#6b7487"/>
-<text x="61.0" y="94.8" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >1.5</text>
-<line x1="70" y1="255.2" x2="430" y2="255.2" stroke="#b9822c" stroke-width="3" stroke-dasharray="8 6"/>
-<path d="M430.0 221.7 L366.2 239.5 L328.9 244.4 L302.4 247.5 L281.9 249.0 L250.9 250.0 L227.8 250.3 L201.3 249.1 L174.9 245.3 L154.3 238.4 L133.8 225.8 L108.2 196.5 L70.0 72.6" fill="none" stroke="#3d68a8" stroke-width="3"/>
-<text x="520.0" y="24.0" font-size="16" fill="#1b2333" text-anchor="start" font-weight="700" >f não linear</text>
-<path d="M520 40 V290 H880" fill="none" stroke="#6b7487" stroke-width="1.5"/>
-<text x="700.0" y="326.0" font-size="15" fill="#5c6577" text-anchor="middle" font-weight="600" >1/K  (flexibilidade →)</text>
-<text transform="translate(476 165.0) rotate(-90)" text-anchor="middle" font-size="15" font-weight="600" fill="#5c6577">Test MSE</text>
-<line x1="520.0" y1="290" x2="520.0" y2="295" stroke="#6b7487"/>
-<text x="520.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.02</text>
-<line x1="604.3" y1="290" x2="604.3" y2="295" stroke="#6b7487"/>
-<text x="604.3" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.05</text>
-<line x1="668.1" y1="290" x2="668.1" y2="295" stroke="#6b7487"/>
-<text x="668.1" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.1</text>
-<line x1="731.9" y1="290" x2="731.9" y2="295" stroke="#6b7487"/>
-<text x="731.9" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.2</text>
-<line x1="816.2" y1="290" x2="816.2" y2="295" stroke="#6b7487"/>
-<text x="816.2" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.5</text>
+<line x1="75" y1="290.0" x2="80" y2="290.0" stroke="#6b7487"/>
+<text x="71.0" y="294.0" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >0</text>
+<line x1="75" y1="211.2" x2="80" y2="211.2" stroke="#6b7487"/>
+<text x="71.0" y="215.2" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >100</text>
+<line x1="75" y1="132.4" x2="80" y2="132.4" stroke="#6b7487"/>
+<text x="71.0" y="136.4" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >200</text>
+<line x1="75" y1="53.6" x2="80" y2="53.6" stroke="#6b7487"/>
+<text x="71.0" y="57.6" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >300</text>
+<line x1="80" y1="260.3" x2="430" y2="260.3" stroke="#b9822c" stroke-width="3" stroke-dasharray="8 6"/>
+<path d="M430.0 231.6 L368.0 246.8 L331.7 251.0 L306.0 253.5 L286.0 254.8 L255.9 255.4 L233.4 255.5 L207.7 254.0 L181.9 249.7 L162.0 242.2 L142.0 228.6 L117.2 196.8 L80.0 62.7" fill="none" stroke="#3d68a8" stroke-width="3"/>
+<text x="530.0" y="24.0" font-size="16" fill="#1b2333" text-anchor="start" font-weight="700" >Renda em S (a f do Cap. 1)</text>
+<path d="M530 40 V290 H880" fill="none" stroke="#6b7487" stroke-width="1.5"/>
+<text x="705.0" y="326.0" font-size="15" fill="#5c6577" text-anchor="middle" font-weight="600" >1/K  (flexibilidade →)</text>
+<text transform="translate(486 165.0) rotate(-90)" text-anchor="middle" font-size="15" font-weight="600" fill="#5c6577">Test MSE</text>
+<line x1="530.0" y1="290" x2="530.0" y2="295" stroke="#6b7487"/>
+<text x="530.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.02</text>
+<line x1="612.0" y1="290" x2="612.0" y2="295" stroke="#6b7487"/>
+<text x="612.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.05</text>
+<line x1="674.0" y1="290" x2="674.0" y2="295" stroke="#6b7487"/>
+<text x="674.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.1</text>
+<line x1="736.0" y1="290" x2="736.0" y2="295" stroke="#6b7487"/>
+<text x="736.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.2</text>
+<line x1="818.0" y1="290" x2="818.0" y2="295" stroke="#6b7487"/>
+<text x="818.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >0.5</text>
 <line x1="880.0" y1="290" x2="880.0" y2="295" stroke="#6b7487"/>
 <text x="880.0" y="309.0" font-size="12" fill="#5c6577" text-anchor="middle" font-weight="400" >1</text>
-<line x1="515" y1="290.0" x2="520" y2="290.0" stroke="#6b7487"/>
-<text x="511.0" y="294.0" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >0</text>
-<line x1="515" y1="236.6" x2="520" y2="236.6" stroke="#6b7487"/>
-<text x="511.0" y="240.6" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >1</text>
-<line x1="515" y1="183.2" x2="520" y2="183.2" stroke="#6b7487"/>
-<text x="511.0" y="187.2" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >2</text>
-<line x1="515" y1="129.8" x2="520" y2="129.8" stroke="#6b7487"/>
-<text x="511.0" y="133.8" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >3</text>
-<line x1="515" y1="76.4" x2="520" y2="76.4" stroke="#6b7487"/>
-<text x="511.0" y="80.4" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >4</text>
-<line x1="520" y1="259.0" x2="880" y2="259.0" stroke="#b9822c" stroke-width="3" stroke-dasharray="8 6"/>
-<path d="M880.0 262.4 L816.2 269.1 L778.9 271.0 L752.4 271.8 L731.9 272.5 L700.9 273.0 L677.8 273.1 L651.3 273.0 L624.9 271.9 L604.3 268.3 L583.8 257.7 L558.2 220.1 L520.0 72.6" fill="none" stroke="#3d68a8" stroke-width="3"/>
-<line x1="70" y1="358" x2="104" y2="358" stroke="#b9822c" stroke-width="3" stroke-dasharray="8 6"/><text x="112.0" y="363.0" font-size="14" fill="#1b2333" text-anchor="start" font-weight="400" >linear regression</text>
-<line x1="290" y1="358" x2="324" y2="358" stroke="#3d68a8" stroke-width="3"/><text x="332.0" y="363.0" font-size="14" fill="#1b2333" text-anchor="start" font-weight="400" >KNN</text>
+<line x1="525" y1="290.0" x2="530" y2="290.0" stroke="#6b7487"/>
+<text x="521.0" y="294.0" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >0</text>
+<line x1="525" y1="195.2" x2="530" y2="195.2" stroke="#6b7487"/>
+<text x="521.0" y="199.2" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >200</text>
+<line x1="525" y1="100.3" x2="530" y2="100.3" stroke="#6b7487"/>
+<text x="521.0" y="104.3" font-size="12" fill="#5c6577" text-anchor="end" font-weight="400" >400</text>
+<line x1="530" y1="262.0" x2="880" y2="262.0" stroke="#b9822c" stroke-width="3" stroke-dasharray="8 6"/>
+<path d="M880.0 255.0 L818.0 263.6 L781.7 266.1 L756.0 267.2 L736.0 268.2 L705.9 269.1 L683.4 269.5 L657.7 269.4 L631.9 268.0 L612.0 263.7 L592.0 251.9 L567.2 214.3 L530.0 62.7" fill="none" stroke="#3d68a8" stroke-width="3"/>
+<line x1="80" y1="358" x2="114" y2="358" stroke="#b9822c" stroke-width="3" stroke-dasharray="8 6"/><text x="122.0" y="363.0" font-size="14" fill="#1b2333" text-anchor="start" font-weight="400" >linear regression</text>
+<line x1="300" y1="358" x2="334" y2="358" stroke="#3d68a8" stroke-width="3"/><text x="342.0" y="363.0" font-size="14" fill="#1b2333" text-anchor="start" font-weight="400" >KNN</text>
 </svg>

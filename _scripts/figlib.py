@@ -121,3 +121,13 @@ def stepper_page(path, title, viewbox, body, steps, aria, css="", interval=3200,
 </html>
 """
     path.write_text(html)
+
+
+# ------------------------------------------------ the course's study object
+
+def income_f(x):
+    """True mean income (thousand R$/year) given years of education.
+
+    The S-shaped f used in every chapter, so the examples share one population.
+    """
+    return 20 + 55 / (1 + np.exp(-(np.asarray(x, float) - 16.5) / 1.3))

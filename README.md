@@ -30,6 +30,7 @@ _scripts/                    figure generators (not published):
   figlib.py                  shared palette, SVG helpers, animation page builder
   ch1_figures.py             chapter 1 figures + animations/overfitting.html
   ch2_figures.py             chapter 2 figures, 2 animations and _tables/*.md
+                             (income study: same income_f as chapter 1)
 ch2/chapter-02-linear-regression/
   _tables/*.md               fitted numbers (Brazilian format), pulled into the
                              chapter with {{< include _tables/<name>.md >}}
