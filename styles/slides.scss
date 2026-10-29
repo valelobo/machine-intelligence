@@ -85,3 +85,8 @@ $code-color: #5b3fa0;
   color: #c62828;
   font-weight: 600;
 }
+
+// For dense tables (e.g. the marketing plan): ::: {.smallest-text}
+.reveal .smallest-text {
+  font-size: 0.66em;
+}

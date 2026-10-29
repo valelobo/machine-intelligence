@@ -21,75 +21,11 @@ CHAPTER = Path("ch1/chapter-01-statistical-learning")
 OUT = CHAPTER / "figures"
 OUT.mkdir(parents=True, exist_ok=True)
 
-INK, MUTED, GRID, AXIS = "#1b2333", "#5c6577", "#e3e7ee", "#6b7487"
-TEAL, BLUE, PURPLE, AMBER, RED = "#2a8c7d", "#3d68a8", "#6c4fb0", "#b9822c", "#b4495a"
-POINT = "#8d95a5"
-FONT = "Inter, system-ui, -apple-system, 'Segoe UI', sans-serif"
+import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from figlib import *  # noqa: E402,F403  palette, svg(), text(), Axes
 
-# ---------------------------------------------------------------- SVG helpers
-
-def svg(width, height, body):
-    return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" '
-        f'font-family="{FONT}">\n'
-        f'<rect width="{width}" height="{height}" fill="#ffffff"/>\n{body}</svg>\n'
-    )
-
-
-def text(x, y, s, size=14, fill=INK, anchor="start", weight=400, extra=""):
-    return (f'<text x="{x:.1f}" y="{y:.1f}" font-size="{size}" fill="{fill}" '
-            f'text-anchor="{anchor}" font-weight="{weight}" {extra}>{s}</text>\n')
-
-
-class Axes:
-    """Maps data coordinates in [x0, x1] x [y0, y1] onto a pixel box."""
-
-    def __init__(self, left, top, width, height, xlim=(0, 1), ylim=(0, 1), xlog=False):
-        self.l, self.t, self.w, self.h = left, top, width, height
-        self.xlim, self.ylim, self.xlog = xlim, ylim, xlog
-
-    def px(self, x, y):
-        (x0, x1), (y0, y1) = self.xlim, self.ylim
-        if self.xlog:
-            x, x0, x1 = math.log10(x), math.log10(x0), math.log10(x1)
-        return (self.l + (x - x0) / (x1 - x0) * self.w,
-                self.t + self.h - (y - y0) / (y1 - y0) * self.h)
-
-    def polyline(self, xs, ys):
-        pts = [self.px(x, y) for x, y in zip(xs, ys)]
-        return "M" + " L".join(f"{a:.1f} {b:.1f}" for a, b in pts)
-
-    def path(self, f, n=120):
-        xs = np.linspace(self.xlim[0], self.xlim[1], n + 1)
-        try:  # vectorised functions (numpy) first, scalar functions otherwise
-            ys = np.asarray(f(xs), dtype=float)
-            assert ys.shape == xs.shape
-        except (TypeError, AssertionError):
-            ys = [f(x) for x in xs]
-        return self.polyline(xs, ys)
-
-    def frame(self, xlabel, ylabel, lowhigh=True):
-        l, t, w, h = self.l, self.t, self.w, self.h
-        out = (f'<path d="M{l} {t} V{t + h} H{l + w}" fill="none" stroke="{AXIS}" stroke-width="1.5"/>\n'
-               + text(l + w / 2, t + h + 36, xlabel, 15, MUTED, "middle", 600)
-               + f'<text transform="translate({l - 44} {t + h / 2}) rotate(-90)" text-anchor="middle" '
-                 f'font-size="15" font-weight="600" fill="{MUTED}">{ylabel}</text>\n')
-        if lowhigh:
-            out += text(l, t + h + 18, "Baixa", 13, MUTED) + text(l + w, t + h + 18, "Alta", 13, MUTED, "end")
-        return out
-
-    def ticks(self, xticks=(), yticks=(), xfmt="{:g}", yfmt="{:g}"):
-        out = ""
-        for v in xticks:
-            x, _ = self.px(v, self.ylim[0])
-            out += (f'<line x1="{x:.1f}" y1="{self.t + self.h}" x2="{x:.1f}" y2="{self.t + self.h + 5}" stroke="{AXIS}"/>\n'
-                    + text(x, self.t + self.h + 19, xfmt.format(v), 12, MUTED, "middle"))
-        for v in yticks:
-            _, y = self.px(self.xlim[0], v)
-            out += (f'<line x1="{self.l - 5}" y1="{y:.1f}" x2="{self.l}" y2="{y:.1f}" stroke="{AXIS}"/>\n'
-                    + text(self.l - 9, y + 4, yfmt.format(v), 12, MUTED, "end"))
-        return out
 
 
 # ------------------------------------------------- income vs years of education
