@@ -1,11 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
 <rect width="720" height="400" fill="#ffffff"/>
 <line x1="110.0" y1="330.0" x2="470.0" y2="375.0" stroke="#6b7487" stroke-width="1.5"/>
-<text x="500.0" y="389.0" font-size="15" fill="#5c6577" text-anchor="middle" font-weight="700" >estudo</text>
 <line x1="110.0" y1="330.0" x2="300.0" y2="235.0" stroke="#6b7487" stroke-width="1.5"/>
-<text x="344.0" y="233.0" font-size="15" fill="#5c6577" text-anchor="middle" font-weight="700" >experiência</text>
 <line x1="110.0" y1="330.0" x2="110.0" y2="115.0" stroke="#6b7487" stroke-width="1.5"/>
-<text x="110.0" y="105.0" font-size="15" fill="#5c6577" text-anchor="middle" font-weight="700" >renda</text>
 <line x1="489.4" y1="138.9" x2="489.4" y2="136.6" stroke="#c98c97" stroke-width="1.2" stroke-opacity="0.8"/>
 <circle cx="489.4" cy="138.9" r="4.2" fill="#c98c97"/>
 <line x1="523.2" y1="134.3" x2="523.2" y2="126.2" stroke="#c98c97" stroke-width="1.2" stroke-opacity="0.8"/>
@@ -160,6 +157,9 @@
 <circle cx="136.7" cy="296.8" r="4.2" fill="#b4495a"/>
 <line x1="373.2" y1="241.0" x2="373.2" y2="241.3" stroke="#b4495a" stroke-width="1.2" stroke-opacity="0.8"/>
 <circle cx="373.2" cy="241.0" r="4.2" fill="#b4495a"/>
+<text x="500.0" y="389.0" font-size="15" fill="#1b2333" text-anchor="middle" font-weight="700" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">estudo</text>
+<text x="362.0" y="241.0" font-size="15" fill="#1b2333" text-anchor="middle" font-weight="700" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">experiência</text>
+<text x="110.0" y="105.0" font-size="15" fill="#1b2333" text-anchor="middle" font-weight="700" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">renda</text>
 <text x="30.0" y="26.0" font-size="16" fill="#3d68a8" text-anchor="start" font-weight="700" >ŷ = -68,9 + 7,09·estudo + 0,57·experiência</text>
 <text x="30.0" y="48.0" font-size="13" fill="#5c6577" text-anchor="start" font-weight="400" >pessoas acima do plano em vermelho, abaixo em rosa</text>
 </svg>

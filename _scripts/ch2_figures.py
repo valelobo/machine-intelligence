@@ -92,6 +92,9 @@ def nice_ticks(vmax, n=5):
     return [0, vmax]
 
 
+HALO = 'paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round"'
+
+
 def frame_num(ax, xlabel, ylabel, xticks, yticks, xfmt="{:g}", yfmt="{:g}"):
     return ax.frame(xlabel, ylabel, lowhigh=False) + ax.ticks(xticks, yticks, xfmt, yfmt)
 
@@ -168,8 +171,8 @@ def least_squares_animation(fit):
 
     cx, cy = left.px(xbar, ybar)
     body = step(1, edu_frame(left) + points(left, EDUC, INCOME, POINT, 3.2, 0.75)
-                + f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="6" fill="{INK}"/>\n'
-                + text(cx + 10, cy + 22, "(x̄, ȳ)", 14, INK, weight=700)
+                + f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="6" fill="{INK}" stroke="#fff" stroke-width="2"/>\n'
+                + text(cx + 12, cy + 26, "(x̄, ȳ)", 15, INK, weight=700, extra=HALO)
                 + frame_num(right, "w₁ (inclinação)", "RSS (mil)", range(0, 15, 2), nice_ticks(ymax), "{:g}", "{:g}"))
     for k, (w1, colour, name) in enumerate(cands):
         w0 = ybar - w1 * xbar
@@ -177,7 +180,7 @@ def least_squares_animation(fit):
         line = f'<path class="draw" clip-path="url(#plotL)" d="{left.path(lambda x: w0 + w1 * x)}" fill="none" stroke="{colour}" stroke-width="3.5"/>\n'
         mx, my = right.px(w1, rss_for(w1))
         marker = (f'<circle cx="{mx:.1f}" cy="{my:.1f}" r="7" fill="{colour}"/>\n'
-                  + text(mx, my - 14, f"{name}: RSS = {br(rss_for(w1), 1)} mil", 13, colour, "middle", 700))
+                  + text(mx, my - 14, f"{name}: RSS = {br(rss_for(w1), 1)} mil", 13, colour, "middle", 700, extra=HALO))
         n = (2, 3, 5)[k]  # candidates A and B show for one step; LS stays
         until = n if k < 2 else None
         body += step(n, res + line, until=until)
@@ -291,13 +294,13 @@ def regression_plane(fit2):
     def plane(e, x):
         return w0 + w1 * e + w2 * x
 
-    body = ""
-    for a, b, lab, d in [((10, 0, 0), (22, 0, 0), "estudo", (30, 14)), ((10, 0, 0), (10, 35, 0), "experiência", (44, -2)),
+    body, labels = "", ""
+    for a, b, lab, d in [((10, 0, 0), (22, 0, 0), "estudo", (30, 14)), ((10, 0, 0), (10, 35, 0), "experiência", (62, 6)),
                          ((10, 0, 0), (10, 0, 115), "renda", (0, -10))]:
         x0, y0 = P(*a)
         x1, y1 = P(*b)
         body += f'<line x1="{x0:.1f}" y1="{y0:.1f}" x2="{x1:.1f}" y2="{y1:.1f}" stroke="{AXIS}" stroke-width="1.5"/>\n'
-        body += text(x1 + d[0], y1 + d[1], lab, 15, MUTED, "middle", 700)
+        labels += text(x1 + d[0], y1 + d[1], lab, 15, INK, "middle", 700, extra=HALO)
     order = sorted(idx, key=lambda i: -EXPER[i])
     behind = [i for i in order if INCOME[i] < plane(EDUC[i], EXPER[i])]
     front = [i for i in order if INCOME[i] >= plane(EDUC[i], EXPER[i])]
@@ -321,6 +324,7 @@ def regression_plane(fit2):
         (a, b), (c, d) = P(10, x, plane(10, x)), P(22, x, plane(22, x))
         body += f'<line x1="{a:.1f}" y1="{b:.1f}" x2="{c:.1f}" y2="{d:.1f}" stroke="{BLUE}" stroke-opacity="0.35"/>\n'
     body += draw(front, RED)
+    body += labels
     body += text(30, 26, f"ŷ = {br(w0, 1)} + {br(w1, 2)}·estudo + {br(w2, 2)}·experiência", 16, BLUE, weight=700)
     body += text(30, 48, "pessoas acima do plano em vermelho, abaixo em rosa", 13, MUTED)
     (OUT / "regression-plane.svg").write_text(svg(720, 400, body))
